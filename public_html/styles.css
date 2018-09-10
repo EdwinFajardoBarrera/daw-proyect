@@ -1,6 +1,5 @@
 
-.header {
- text-align: right;
- text-decoration-color: red 
-
+.header{
+    color: blueviolet;
+    text-align: center;
 }
