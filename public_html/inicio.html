@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="carouselIndex.js"></script>
+        <link rel="stylesheet" type="text/css" href="estilosInicio.css"/>
+    </head>
+    <body>
+        <main>   
+            <!-- HEADER -->
+            <iframe src="header.html" frameborder="0" width="100%" height="90"></iframe> 
+            
+            <!-- contenedor carousel -->
+            <div class="slideshow-container">
+                
+                <!-- imágenes -->
+                <div class="mySlides fade" style="display: block;">
+                    <img src="images/media2.jpg">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="images/media3.jpg">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="images/media4.jpg">
+                </div>
+                
+                <!-- botones siguiente y anterior -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>    
+            <br>
+        </main>
+    </body>
+</html>
