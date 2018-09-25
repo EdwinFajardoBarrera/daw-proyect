@@ -1,6 +1,23 @@
 
-.header{
-    color: rgb(29, 5, 252);
-    text-align: center;
-    text-shadow: 10px;
+.textoContacto{
+    position: absolute;
+    right: 50rem;
+    bottom: 10rem;
+    font-size: 17px;
+    font-family: 'Source Sans Pro';
+    color: #bdbdbd;
+    
+}
+
+.titulo
+{
+    
+    font-size: 50px;
+    font-family: 'Source Sans Pro';
+    color: #bdbdbd;
+    max-width: 400px;
+    position: relative;
+    margin: auto;
+   
+   
 }
