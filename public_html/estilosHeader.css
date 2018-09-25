@@ -37,14 +37,14 @@ body nav a{
     line-height: 90px;
     float: left;
     margin-left: 90px;
-    font-family: serif;
+    font-family:'Poiret One';
     text-decoration: background;
     margin-top: 2px
 }
 
 /* buscador */
 input[type=text] {
-    margin-left: 25px;
+    margin-left: 45px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
