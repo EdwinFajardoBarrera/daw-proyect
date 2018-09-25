@@ -12,7 +12,7 @@ and open the template in the editor.
 
 /* color del header */
 .header {   
-    background-color: #151639;
+    background-color: #011936;
     overflow: hidden;
 }
 
@@ -25,14 +25,14 @@ body nav {
 
 body nav a{
     text-decoration: none;
-    color: gray;
+    color: #bdbdbd;
     font-size: 30px;
     margin-right: 40px;
 }
 
 /* logo de la página */
 .logo {
-    color: #D3D3D3;
+    color: #ffffff;
     font-size: 50px;
     line-height: 90px;
     float: left;
