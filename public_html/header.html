@@ -16,7 +16,7 @@ and open the template in the editor.
   <link rel="stylesheet" type="text/css" href="estilosHeader.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <base target="_parent">
-  <script src="scripts.js"></script>
+  <script type="text/javascript" src="scripts.js"></script>
   
 </head>
 
@@ -27,7 +27,7 @@ and open the template in the editor.
   <!-- buscador -->
   <input id="searchBox" type="text" name="search" placeholder="Buscar en W.G.T" 
 
-    onkeypress="if(((document.all) ? event.keyCode : event.which)==13) searchText('cadena', 'searched')"
+    onkeypress="if(((document.all) ? event.keyCode : event.which)==13) searchText(this.searchText, 'searched')"
 
   >
 

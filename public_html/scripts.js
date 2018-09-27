@@ -6,7 +6,3 @@ function searchText(cadena, idForAdd) {
     this.getElementById(idForAdd).innerHTML = cadena;
     return elements;
 }
-
-function abrirXd() { 
-    open('searchResults.html','_parent') ; 
-    } 
