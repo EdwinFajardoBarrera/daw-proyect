@@ -18,7 +18,7 @@
 
 
 INTRODUCCIÓN:
->Este proyecto nació con la idea de reunir a las mejores talentos en el area de dibujo, diseño 3D y diseño gráfico (se agregarán más en el futuro), nuestra intención es que cualquier persona pueda compartir sus trabajos y que los usuarios con más experiencia puedan brindarles consejos para mejorar. Los artistas podrán ser calificados y ganar cierta reputación, nuestro objetivo, además de promover la expresión artistica, es que estas personas ganen reputación y puedan ser contratados por externos que requieran de sus talentos.
+>Este proyecto nació con la idea de reunir a los mejores talentos en el area del dibujo, diseño 3D y diseño gráfico (se agregarán más en el futuro), nuestra intención es que cualquier persona pueda compartir sus trabajos y que los usuarios con más experiencia puedan brindar consejos para mejorar. Los artistas podrán ser calificados y ganar reputación, nuestro objetivo, además de promover la expresión artistica, es que estas personas puedan publicitarse por medio de sus obras para poder ser contratadas por externos que requieran de sus talentos.
 
 
 DESCARGAR Y ABRIR EL PROYECTO:
