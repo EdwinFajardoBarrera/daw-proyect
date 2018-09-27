@@ -1,72 +1,77 @@
 <html lang="en">
+
 <head>
     <title> Registro </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="./estilosInicio.css">
 
     <script>
-        var arrayUsuario= [];  
 
-        function confirmarContraseña(){            
+        var arrayUsuario = [];
+
+        function confirmarContraseña() {
             var contraseña = document.getElementById("contraseñaRegistro").value;
-            var confirmacionContraseña = document.getElementById("confirmacionContraseñaRegistro").value;  
-            var isAccepted = true;          
-            
-            if(contraseña != confirmacionContraseña){                
+            var confirmacionContraseña = document.getElementById("confirmacionContraseñaRegistro").value;
+            var isAccepted = true;
+
+            if (contraseña != confirmacionContraseña) {
                 isAccepted = false;
             }
 
             return isAccepted;
         }
-          
-        function validarRegistro(){            
+
+        function validarRegistro() {
             var nombre = document.getElementById("nombre").value;
             var apellido = document.getElementById("apellido").value;
             var usuario = document.getElementById("usuarioRegistro").value;
             var correo = document.getElementById("correo").value;
             var contraseñaRegistro = document.getElementById("contraseñaRegistro").value;
-            var confirmacionContraseñaRegistro = document.getElementById("confirmacionContraseñaRegistro").value;               
+            var confirmacionContraseñaRegistro = document.getElementById("confirmacionContraseñaRegistro").value;
             emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-            if(emailRegex.test(correo)==true){
-                if(nombre&&apellido&&usuario&&correo&&contraseñaRegistro&&confirmacionContraseñaRegistro != null){
-                    if(confirmarContraseña() ==true){   
-                        arrayUsuario = [nombre, apellido, usuario, correo, contraseñaRegistro];                    
+            if (emailRegex.test(correo) == true) {
+                if (nombre && apellido && usuario && correo && contraseñaRegistro && confirmacionContraseñaRegistro != null) {
+                    if (confirmarContraseña() == true) {
+                        arrayUsuario = [nombre, apellido, usuario, correo, contraseñaRegistro];
                         window.alert("Usuario creado.");
                     }
-                    else{
-                        window.alert("La contraseña no coincide.");   
+                    else {
+                        window.alert("La contraseña no coincide.");
                     }
                 }
-                else{
+                else {
                     window.alert("No se han completado todos los campos.");
                 }
             }
-            else{
+            else {
                 window.alert("Correo invalido.");
-            }            
+            }
         }
 
-        function obtenerUsuario(){
+        function obtenerUsuario() {
             var usuarioAcceso = document.getElementById("usuarioAcceso").value;
             var contraseñaAcceso = document.getElementById("contraseñaAcceso").value;
 
-            if(usuarioAcceso == arrayUsuario[2]){
-                if(contraseñaAcceso == arrayUsuario[4]){
+            if (usuarioAcceso == arrayUsuario[2]) {
+                if (contraseñaAcceso == arrayUsuario[4]) {
                     window.alert("Bienvenido " + arrayUsuario[0]);
+                    // Sets the new location of the current window.
+                    window.location = "perfilArtista.html";
+
                 }
-                else{
+                else {
                     window.alert("La contraseña es incorrecta.");
                 }
             }
-            else{
+            else {
                 window.alert("No existe ese usuario.");
             }
         }
 
-        
+
 
     </script>
 
@@ -152,14 +157,15 @@
     </style>
 
 </head>
+
 <body>
     <main>
         <!-- HEADER -->
-        <iframe src="header.html" frameborder="0" width="100%" height="90"></iframe> 
-              
-        <div class= "registro" id= "registroDiv">
-            <form id= "registroForm">  
-                <p class= "subtitle">Registrarse</p>                              
+        <iframe src="header.html" frameborder="0" width="100%" height="90"></iframe>
+
+        <div class="registro" id="registroDiv">
+            <form id="registroForm">
+                <p class="subtitle">Registrarse</p>
                 <input type="name" id="nombre" name="nombre" placeholder="Nombre">
                 <input type="name" id="apellido" name="apellido" placeholder="Apellido">
                 <input type="text" id="usuarioRegistro" name="usuario" placeholder="Nombre de usuario">
@@ -167,23 +173,24 @@
                 <input type="password" id="contraseñaRegistro" name="contraseña" placeholder="Contraseña">
                 <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña">
                 <!--<input type="submit" value="Crear cuenta">-->
-                <button onclick="validarRegistro()" type="button">Crear cuenta</button>                
-            </form>
-        </div>        
-        
-        
-        <div class= "acceder">
-            <form>     
-                <p class= "subtitle">Acceder</p>           
-                <input type="text" id="usuarioAcceso" name="usuario" placeholder="Nombre de usuario">
-                <input type="password" id="contraseñaAcceso" name="contraseñaAcceso" placeholder="Contraseña">                
-                <button onclick="obtenerUsuario()" type="button">Entrar</button>                
+                <button onclick="validarRegistro()" type="button">Crear cuenta</button>
             </form>
         </div>
 
-        <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe> 
+
+        <div class="acceder">
+            <form>
+                <p class="subtitle">Acceder</p>
+                <input type="text" id="usuarioAcceso" name="usuario" placeholder="Nombre de usuario">
+                <input type="password" id="contraseñaAcceso" name="contraseñaAcceso" placeholder="Contraseña">
+                <button onclick="obtenerUsuario()" type="button">Entrar</button>
+            </form>
+        </div>
+
+        <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe>
 
     </main>
-    
+
 </body>
+
 </html>
