@@ -1,4 +1,18 @@
 
+.responsivePer {
+    margin: .5%;
+    float: left;
+    width: 32.3%;
+    
+}
+
+
+.miFoto:hover {
+    -webkit-transform:scale(1.3);transform:scale(1.3);
+}
+.imagenLoca {
+    overflow:hidden;
+}
 #fotoPerfil { 
     border:2px solid black;
     background-color: #676F7B;
