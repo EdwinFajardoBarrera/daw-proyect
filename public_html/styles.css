@@ -77,7 +77,7 @@
 }
 
 body {
-    background-color: rgba(70, 83, 82, .5);
+    background-color: #465362;
     margin: 0%;
     width: 100%;
     overflow: scroll;   
@@ -123,7 +123,7 @@ span > a {
 }
 
 div.gallery:hover {
-    border: 1px solid #777;
+    border: 1px solid black;
 }
 
 div.gallery img {
