@@ -42,6 +42,11 @@ body nav a{
     margin-top: 2px
 }
 
+.logo a{
+    text-decoration: none;
+    color: white;
+}
+
 /* buscador */
 input[type=text] {
     margin-left: 45px;
