@@ -1,0 +1,83 @@
+html {
+    background-color: rgba(70, 83, 82, .5);
+    padding: 5em;
+}
+
+.container {
+    position: relative;
+}
+
+.image-header {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.247);
+    text-align: center;
+    color: antiquewhite;
+    font-size: 18px;
+    font: 1em sans-serif;
+}
+
+.image-footer {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 18px;    
+    background-color: rgba(0, 0, 0, 0.247);
+    text-align: center;
+    color: antiquewhite;
+}
+
+div.gallery {
+    border: 1px solid #ccc;
+    float: left;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: 20em;
+    /* min-width: 200px; */
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.responsive {
+    margin: 2rem;
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .responsive {
+        width: 100%;
+    }
+}
+
+.acept-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

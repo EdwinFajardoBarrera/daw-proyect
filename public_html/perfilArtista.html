@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
     <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
+    <script type="text/javascript" src="scripts.js"></script>
 
 </head>
 
@@ -20,7 +21,7 @@
                     <div id="div_izq">
                         <img id="fotoPerfil" src="icons/perfil.png" width="50" height="200">
 
-                        <p>Hector Alberto Farjardo Ramirez</p>
+                        <p id="nombreUsuario">Hector Alberto Farjardo Ramirez<a class="button-edit" id="change-name-btn" onclick="editName()">Editar</a></p>
                         <br>
                     </div>
                     <div id="div_der">
@@ -38,12 +39,8 @@
                     </div>
 
                     <div id="div_descrip">
-                        <div id="div-button"><a class="button-edit">Editar</a></div>
-                        <p>Haz una breve descripcion tuya</p>
-                        <br>
-                        <p>Como expresas tu arte?</p>
-                        <br>
-                        <p>Que te gusta mas en el mundo?</p>
+                        <div id="edit-description-button"><a class="button-edit" onclick="editInfo()">Editar</a></div>
+                        <p id="description-pane">Haz una breve descripcion tuya... Como expresas tu arte? Que te gusta mas en el mundo?</p>
                         <br>
                     </div>
                 </div>
