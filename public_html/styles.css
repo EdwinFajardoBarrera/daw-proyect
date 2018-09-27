@@ -1,4 +1,50 @@
 
+#fotoPerfil { 
+    border:2px solid black;
+    background-color: #676F7B;
+
+}
+
+#puntuaciones {
+    border:1px solid black;
+    background-color: #676F7B;
+    color: #97C15B;
+    font-size: 3rem;
+}
+#div_izq {
+    position: relative;
+    margin-left: 10rem;
+    margin-top: 2rem;
+    width:300px; 
+    float:left; 
+    text-align:center;
+    color: white;
+    font-family: 'Poiret One';
+    font-size: 1.5rem;
+}
+
+#div_der {
+    position: relative;
+    margin-right: 10rem;
+    margin-top: 3rem;
+    width:300px; 
+    float:right; 
+    text-align:center;
+    color: white;
+    font-family: 'Poiret One';
+    font-size: 1.5rem;
+}
+
+#div_descrip {
+    clear:both;
+    margin-right: 10rem;
+    margin-left: 10rem;
+    background: #8E9298;
+    font-family: 'Poiret One';
+    font-size: 1rem;
+    text-align: center
+}
+
 .textoContacto{
     /* position: relative; */
     /* right: 50rem; */
