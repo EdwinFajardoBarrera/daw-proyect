@@ -60,11 +60,11 @@
 }
 
 .textoContacto{
-    /* position: relative; */
+    position: relative;
     /* right: 50rem; */
     /* bottom: 10rem; */
     font-size: 1em;
-    text-align: left;
+    text-align: center;
     width: 50%;
     margin: 2em;
     font-family: 'Source Sans Pro';
