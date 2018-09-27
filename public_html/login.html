@@ -7,40 +7,67 @@
     <link rel="stylesheet" type="text/css" href="./estilosInicio.css">
 
     <script>
-        var usuario = [nombre, apellido, nombreUsuario, correo, contraseña]
+        var arrayUsuario= [];  
 
         function confirmarContraseña(){            
-            let contraseña = document.getElementById("contraseñaRegistro").value;
-            let confirmacionContraseña = document.getElementById("confirmacionContraseñaRegistro").value;  
-            let isAccepted = true;          
-
+            var contraseña = document.getElementById("contraseñaRegistro").value;
+            var confirmacionContraseña = document.getElementById("confirmacionContraseñaRegistro").value;  
+            var isAccepted = true;          
+            
             if(contraseña != confirmacionContraseña){                
                 isAccepted = false;
             }
-                        
+
             return isAccepted;
         }
+          
+        function validarRegistro(){            
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var usuario = document.getElementById("usuarioRegistro").value;
+            var correo = document.getElementById("correo").value;
+            var contraseñaRegistro = document.getElementById("contraseñaRegistro").value;
+            var confirmacionContraseñaRegistro = document.getElementById("confirmacionContraseñaRegistro").value;               
+            emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-        function validarRegistro(){
-            let nombre = document.getElementById("nombre").value;
-            let apellido = document.getElementById("apellido").value;
-            let usuario = document.getElementById("usuario").value;
-            let correo = document.getElementById("correo").value;
-            let contraseñaRegistro = document.getElementById("contraseñaRegistro").value;
-            let confirmacionContraseñaRegistro = document.getElementById("confirmacionContraseñaRegistro").value;
-
-            if(nombre&&apellido&&usuario&&correo&&contraseñaRegistro&&confirmacionContraseñaRegistro != null){
-                if(confirmarContraseña() ==true){
-                    window.alert("Usuario creado satisfactoriamente.");                    
+            if(emailRegex.test(correo)==true){
+                if(nombre&&apellido&&usuario&&correo&&contraseñaRegistro&&confirmacionContraseñaRegistro != null){
+                    if(confirmarContraseña() ==true){   
+                        arrayUsuario = [nombre, apellido, usuario, correo, contraseñaRegistro];                    
+                        window.alert("Usuario creado.");
+                    }
+                    else{
+                        window.alert("La contraseña no coincide.");   
+                    }
                 }
                 else{
-                    window.alert("La contraseña no coincide.");   
+                    window.alert("No se han completado todos los campos.");
                 }
             }
             else{
-                window.alert("No se han completado todos los campos.");
+                window.alert("Correo invalido.");
+            }            
+        }
+
+        function obtenerUsuario(){
+            var usuarioAcceso = document.getElementById("usuarioAcceso").value;
+            var contraseñaAcceso = document.getElementById("contraseñaAcceso").value;
+
+            if(usuarioAcceso == arrayUsuario[2]){
+                if(contraseñaAcceso == arrayUsuario[4]){
+                    window.alert("Bienvenido " + arrayUsuario[0]);
+                }
+                else{
+                    window.alert("La contraseña es incorrecta.");
+                }
+            }
+            else{
+                window.alert("No existe ese usuario.");
             }
         }
+
+        
+
     </script>
 
     <style>
@@ -70,9 +97,19 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-        }      
+        }   
+
+        input[type=password], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }   
         
-        input[type=submit] {
+        button[type=button] {
             width: 50%;
             background-color: #4CAF50;
             color: white;
@@ -83,13 +120,15 @@
             cursor: pointer;  
             float: right;          
         }
+        
+        button[type=button]:hover {
+            background-color: #45a049;
+        }
+
         input[type=checkbox] {
             font: 1em a-serif;
         }
 
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
                   
         div.registro {
             float: left;
@@ -119,29 +158,30 @@
         <iframe src="header.html" frameborder="0" width="100%" height="90"></iframe> 
               
         <div class= "registro" id= "registroDiv">
-            <form id= "registroForm" onsubmit= "return validarRegistro()">  
+            <form id= "registroForm">  
                 <p class= "subtitle">Registrarse</p>                              
                 <input type="name" id="nombre" name="nombre" placeholder="Nombre">
                 <input type="name" id="apellido" name="apellido" placeholder="Apellido">
-                <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario">
+                <input type="text" id="usuarioRegistro" name="usuario" placeholder="Nombre de usuario">
                 <input type="text" id="correo" name="correo" placeholder="Correo electrónico">
-                <input type="text" id="contraseñaRegistro" name="contraseña" placeholder="Contraseña">
-                <input type="text" id="confirmacionContraseñaRegistro" name="confirmacionContraseña" placeholder="Confirmar contraseña">
-                <input type="submit" value="Crear cuenta" >
-                <input type="checkbox" name="terminos" value="aceptado"> Acepto terminos y condiciones<br>
+                <input type="password" id="contraseñaRegistro" name="contraseña" placeholder="Contraseña">
+                <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña">
+                <!--<input type="submit" value="Crear cuenta">-->
+                <button onclick="validarRegistro()" type="button">Crear cuenta</button>                
             </form>
         </div>        
         
         
         <div class= "acceder">
-            <form >     
+            <form>     
                 <p class= "subtitle">Acceder</p>           
-                <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario">
-                <input type="text" id="contraseñaAcceso" name="contraseña" placeholder="Contraseña">                
-                <input type="submit" value="Entrar">
-                
+                <input type="text" id="usuarioAcceso" name="usuario" placeholder="Nombre de usuario">
+                <input type="password" id="contraseñaAcceso" name="contraseñaAcceso" placeholder="Contraseña">                
+                <button onclick="obtenerUsuario()" type="button">Entrar</button>                
             </form>
         </div>
+
+        <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe> 
 
     </main>
     

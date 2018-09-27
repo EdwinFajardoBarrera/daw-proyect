@@ -1,0 +1,24 @@
+*{margin: 0; padding: 0;}
+
+/* color del footer */
+.footer {   
+    position: absolute;
+    bottom: 0;    
+    background-color: #011936;
+    overflow: hidden;
+}
+
+/*color del contenido*/
+.content {    
+    
+    color: #ffffff;
+    font-size: 10px; 
+    
+    text-align: center;    
+    vertical-align: middle;        
+    font-family:'Source Sans Pro';
+    text-decoration: background;
+    margin-top: 2px
+}
+
+.
