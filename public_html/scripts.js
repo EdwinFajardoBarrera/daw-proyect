@@ -31,6 +31,21 @@ function editInfo(){
     }
 }
 
+function añadirComentario() {
+    
+    var cajaComentario = document.getElementById('area-comentarios');
+    var nuevoComentario = document.getElementById('commentBox').value;
+    if(nuevoComentario != ""){
+        cajaComentario.innerHTML = "<p>" +nuevoComentario +"</p>";
+        document.getElementById('commentBox').value ="";
+        nombre.innerHTML = nuevoComentario + "<a class=\"button-edit\" id=\"change-name-btn\" onclick=\"editName()\">Editar</a>";
+    } else {
+        window.alert("El comentario no puede estar vacio");
+        window.location("comentarios.html");
+    }
+   
+}
+
 var slideIndex = 1;
 showSlides(slideIndex);
 
