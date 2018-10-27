@@ -6,7 +6,7 @@
     
     if($buscar != null) {
         
-        $RUTA_ARCHIVO = 'C:\xampp\htdocs\daw-proyect\db_images.txt';
+        $RUTA_ARCHIVO = 'C:\xampp\htdocs\daw-proyect\all_images.txt';
         $fpDatos = fopen($RUTA_ARCHIVO, 'r');
 
         if(!$fpDatos) {
@@ -30,7 +30,7 @@
                    $mostarImagenes = true;
                    
                    $contImagen++;    
-                   $resultados[$numImagen] = '<img src="DB/images/' . $buscar . $contImagen . '.jpg" class="acomodar" width="100%" height="400"> ' ;
+                   $resultados[$numImagen] = '<img src="DB/all_images/' . $buscar . $contImagen . '.jpg" class="acomodar" width="100%" height="400"> ' ;
                    $numImagen++;
                }
                
