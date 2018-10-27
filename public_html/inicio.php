@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
 <?php
-    $RUTA_ARCHIVO = 'C:\xampp\htdocs\daw-proyect\db_images.txt';
+    $RUTA_ARCHIVO = 'C:\xampp\htdocs\daw-proyect\all_images.txt';
     $fpDatos = fopen($RUTA_ARCHIVO, 'r');
 
     if(!$fpDatos) {
@@ -26,7 +26,7 @@ and open the template in the editor.
             
             if($imagen != "") {
                 $todasLasImagenes[$numImagen] = '<div class="mySlides fade">
-                                            <img src="DB/images/' . $imagen . '.jpg" width="100%" height="500">
+                                            <img src="DB/all_images/' . $imagen . '.jpg" width="100%" height="500">
                                             <iframe class="area-comentarios" src="comentarios.html" frameborder="0" width="100%" height="90"></iframe>
                                           </div>' ;
                 $numImagen++;
@@ -57,7 +57,7 @@ and open the template in the editor.
 
             <!-- imágenes -->
             <div class="mySlides fade" style="display: block;">
-                <img src="designs/diseño3.jpg" width="100%" height="500">
+                <img src="DB/designs/design3.jpg" width="100%" height="500">
                 <iframe class="area-comentarios" src="comentarios.html" frameborder="0" width="100%" height="90"></iframe>
             </div>
 
