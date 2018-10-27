@@ -161,6 +161,12 @@ body {
     width: 29%;
 }
 
+.acomodar {
+    margin: 2%;
+    width: 29%;
+    float:left; 
+}
+
 div.gallery {
     border: 1px solid #ccc;
     float: left;
