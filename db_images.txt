@@ -1,0 +1,6 @@
+perrito1|perrito2|perrito3|
+deku1|deku2|
+cantante1|cantante2|cantante3|cantante4|
+sonic1|sonic2|sonic3|
+shrek1|shrek2|shrek3|shrek4|shrek5|shrek6|
+ivan1|ivan2|ivan3|ivan4
