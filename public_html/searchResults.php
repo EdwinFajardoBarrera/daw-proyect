@@ -6,7 +6,7 @@
     
     if($buscar != null) {
         
-        $RUTA_ARCHIVO = 'C:\xampp\htdocs\daw-proyect\all_images.txt';
+        $RUTA_ARCHIVO = '..\all_images.txt';
         $fpDatos = fopen($RUTA_ARCHIVO, 'r');
 
         if(!$fpDatos) {
