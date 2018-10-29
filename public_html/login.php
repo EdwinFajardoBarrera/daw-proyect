@@ -28,7 +28,9 @@
                 <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña" required>
                 <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña" required>
                 <!--<input type="submit" value="Crear cuenta">-->
+                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>  
                 <input type="submit" value="Crear" name="submitRegistro">
+                
             </form>
 
             <div><?php      
@@ -45,7 +47,7 @@
                     
                 ?>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>                
+                              
             </form>
             
         </div>
@@ -80,19 +82,7 @@
                 $instancia->setPassword($password);
 
                 $instancia->keepData($instancia);
-            }
 
-            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
-                $user = $_POST["user"];
-                $password = $_POST["password"];
-                $correct_login =  $instancia->isValidLogin($user, $password);
-                if ($correct_login) {
-                    header('Location: inicio.php');
-                }   
-            }
-
-            if(!empty($_POST)){
-		
                 $name = $_POST['name'];
                 $password = $_POST['password'];
                 $captcha = $_POST['g-recaptcha-response'];
@@ -118,6 +108,19 @@
                     } 
                 }
             }
+
+
+
+            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
+                $name = $_POST["user"];
+                $password = $_POST["password"];
+                $correct_login =  $instancia->isValidLogin($name, $password);
+                if ($correct_login) {
+                    header('Location: inicio.php');
+                }   
+            }
+
+          
 
         ?>
 
