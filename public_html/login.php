@@ -28,7 +28,9 @@
                 <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña" required>
                 <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña" required>
                 <!--<input type="submit" value="Crear cuenta">-->
-                <input type="submit" value="Crear" name="submitRegistro">
+                <input type="submit" value="Crear" name="form">
+
+                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>  
             </form>
 
             <div><?php      
@@ -45,8 +47,7 @@
                     
                 ?>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>                
-            </form>
+                                      
             
         </div>
        
