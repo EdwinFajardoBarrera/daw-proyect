@@ -63,11 +63,12 @@
             }
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
-                $name = $_POST["user"];
+                $user = $_POST["user"];
                 $password = $_POST["password"];
-                $correct_login =  $instancia->isValidLogin($name, $password);
+                $correct_login =  $instancia->isValidLogin($user, $password);
                 if ($correct_login) {
                     header('Location: inicio.php');
+                    $instancia->session($user);
                 }    
             }
 

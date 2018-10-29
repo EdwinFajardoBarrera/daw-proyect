@@ -43,7 +43,7 @@ and open the template in the editor.
     <a href="drawsView.php" title="Dibujo"><i class="fa fa-pencil"></i></a>
     <a href="designsView.php" title="Diseño Gráfico"><i class="fa fa-desktop"></i></a>
     <a href="3DdesignsView.php" title="Diseño 3D"><i class="fa fa-cube"></i></a>
-    <a href="login.html" title="Login"><i class="fa fa-user"></i></a>
+    <a href="login.php" title="Login"><i class="fa fa-user"></i></a>
 
   </nav>
 

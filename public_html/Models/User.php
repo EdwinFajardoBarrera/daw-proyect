@@ -74,6 +74,13 @@ class User {
     return $validation;
 
     }
+
+    public function session($user) {
+      session_start();
+
+      $_SESSION["user"] = $user;
+
+    }
     
 }
 
