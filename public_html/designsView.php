@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <?php
-        $RUTA_ARCHIVO = '..\designs.txt';
+        $RUTA_ARCHIVO = '../designs.txt';
         $fpDatos = fopen($RUTA_ARCHIVO, 'r');
         
         if(!$fpDatos) {

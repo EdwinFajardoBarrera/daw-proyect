@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./estilosInicio.css">
     <link rel="stylesheet" type="text/css" href="./loginStyle.css">
     <script type="text/javascript" src="loginScript.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 
@@ -20,16 +21,35 @@
             <form id="registroForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input type="hidden" name="form" value="create">
                 <p class="subtitle">Registrarse</p>
-                <input type="name" id="nombre" name="name" placeholder="Nombre">
-                <input type="name" id="apellido" name="last_name" placeholder="Apellido">
-                <input type="text" id="usuarioRegistro" name="username" placeholder="Nombre de usuario">
-                <input type="text" id="correo" name="email" placeholder="Correo electrónico">
-                <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña">
-                <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña">
+                <input type="name" id="nombre" name="name" placeholder="Nombre" required>
+                <input type="name" id="apellido" name="last_name" placeholder="Apellido" required>
+                <input type="text" id="usuarioRegistro" name="username" placeholder="Nombre de usuario" required>
+                <input type="text" id="correo" name="email" placeholder="Correo electrónico" required>
+                <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña" required>
+                <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña" required>
                 <!--<input type="submit" value="Crear cuenta">-->
-                <input onclick = "validarRegistro()" type="submit" value="Crear">
+                <input type="submit" value="Crear" name="submitRegistro">
             </form>
+
+            <div><?php      
+                    include("validarRegistro.php");             
+                    echo "<p class= 'error'> $error_nombreLargo </p>";
+                    echo "<p class= 'error'> $error_nombreInvalido </p>";
+                    echo "<p class= 'error'> $error_apellidoLargo </p>";
+                    echo "<p class= 'error'> $error_apellidoInvalido </p>";
+                    echo "<p class= 'error'> $error_usuarioLargo </p>";
+                    echo "<p class= 'error'> $error_usuarioInvalido </p>";
+                    echo "<p class= 'error'> $error_correoInvalido </p>";                    
+                    echo "<p class= 'error'> $error_contraseñaNoCoincide </p>";
+                    echo "<p class= 'error'> $error_contraseñaCorta </p>";
+                    
+                ?>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>                
+            </form>
+            
         </div>
+       
 
 
         <div class="acceder">
@@ -68,8 +88,35 @@
                 $correct_login =  $instancia->isValidLogin($user, $password);
                 if ($correct_login) {
                     header('Location: inicio.php');
-                    $instancia->session($user);
-                }    
+                }   
+            }
+
+            if(!empty($_POST)){
+		
+                $name = $_POST['name'];
+                $password = $_POST['password'];
+                $captcha = $_POST['g-recaptcha-response'];
+                
+                $secret = '6LdJRXcUAAAAALouIjSUxXaQmAEuYLqLgnPHv7wG';
+                
+                if(!$captcha){
+        
+                    echo "<script>
+                     alert('No verificaste el captcha... Robot?');
+                     window.location= 'login.php'
+                        </script>";
+                    
+                    } else {
+                    
+                    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha");
+                    
+                    $arr = json_decode($response, TRUE);
+                    
+                    if(!$arr['success'])
+                    {
+                        echo '<h3>Error al comprobar Captcha </h3>';
+                        } 
+                }
             }
 
         ?>
