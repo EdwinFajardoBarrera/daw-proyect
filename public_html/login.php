@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./estilosInicio.css">
     <link rel="stylesheet" type="text/css" href="./loginStyle.css">
     <script type="text/javascript" src="loginScript.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 
@@ -27,9 +28,12 @@
                 <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña">
                 <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña">
                 <!--<input type="submit" value="Crear cuenta">-->
+                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>
                 <input onclick = "validarRegistro()" type="submit" value="Crear">
             </form>
+            
         </div>
+       
 
 
         <div class="acceder">
@@ -68,7 +72,35 @@
                 $correct_login =  $instancia->isValidLogin($name, $password);
                 if ($correct_login) {
                     header('Location: inicio.php');
-                }    
+                }   
+            }
+
+            if(!empty($_POST)){
+		
+                $name = $_POST['name'];
+                $password = $_POST['password'];
+                $captcha = $_POST['g-recaptcha-response'];
+                
+                $secret = '6LdJRXcUAAAAALouIjSUxXaQmAEuYLqLgnPHv7wG';
+                
+                if(!$captcha){
+        
+                    echo "<script>
+                     alert('No verificaste el captcha... Robot?');
+                     window.location= 'login.php'
+                        </script>";
+                    
+                    } else {
+                    
+                    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha");
+                    
+                    $arr = json_decode($response, TRUE);
+                    
+                    if(!$arr['success'])
+                    {
+                        echo '<h3>Error al comprobar Captcha </h3>';
+                        } 
+                }
             }
 
         ?>
