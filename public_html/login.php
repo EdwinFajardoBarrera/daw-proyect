@@ -19,7 +19,7 @@
 
         <div class="registro" id="registroDiv">
             <form id="registroForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" name="form" value="create">
+                <input type="hidden" name="form" value="create">
                 <p class="subtitle">Registrarse</p>
                 <input type="name" id="nombre" name="name" placeholder="Nombre" required>
                 <input type="name" id="apellido" name="last_name" placeholder="Apellido" required>
@@ -28,10 +28,9 @@
                 <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña" required>
                 <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña" required>
                 <!--<input type="submit" value="Crear cuenta">-->
-                <input type="submit" value="Crear" name="form">
+                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o">
 
-                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>  
-            </form>
+                </div><input type="submit" value="Crear" name="form"></form>
 
             <div><?php      
                     include("validarRegistro.php");             
@@ -46,8 +45,7 @@
                     echo "<p class= 'error'> $error_contraseñaCorta </p>";
                     
                 ?>
-                </div>
-                                      
+                </div>                                      
             
         </div>
        
@@ -81,19 +79,7 @@
                 $instancia->setPassword($password);
 
                 $instancia->keepData($instancia);
-            }
 
-            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
-                $name = $_POST["user"];
-                $password = $_POST["password"];
-                $correct_login =  $instancia->isValidLogin($name, $password);
-                if ($correct_login) {
-                    header('Location: inicio.php');
-                }   
-            }
-
-            if(!empty($_POST)){
-		
                 $name = $_POST['name'];
                 $password = $_POST['password'];
                 $captcha = $_POST['g-recaptcha-response'];
@@ -119,6 +105,19 @@
                         } 
                 }
             }
+
+
+
+            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
+                $name = $_POST["user"];
+                $password = $_POST["password"];
+                $correct_login =  $instancia->isValidLogin($name, $password);
+                if ($correct_login) {
+                    header('Location: inicio.php');
+                }   
+            }
+
+          
 
         ?>
 
