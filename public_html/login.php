@@ -19,7 +19,7 @@
 
         <div class="registro" id="registroDiv">
             <form id="registroForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <input type="hidden" name="form" value="create">
+            <input type="hidden" name="form" value="create">
                 <p class="subtitle">Registrarse</p>
                 <input type="name" id="nombre" name="name" placeholder="Nombre" required>
                 <input type="name" id="apellido" name="last_name" placeholder="Apellido" required>
@@ -28,24 +28,27 @@
                 <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña" required>
                 <input type="password" id="confirmacionContraseñaRegistro" name="contraseñaRegistro" placeholder="Confirmar contraseña" required>
                 <!--<input type="submit" value="Crear cuenta">-->
-                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o">
-
-                </div><input type="submit" value="Crear" name="form"></form>
+                <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>  
+                <input onclick = validarRegistro() type="submit" value="Crear" name="submitRegistro">
+                
+            </form>
 
             <div><?php      
-                    include("validarRegistro.php");             
-                    echo "<p class= 'error'> $error_nombreLargo </p>";
-                    echo "<p class= 'error'> $error_nombreInvalido </p>";
-                    echo "<p class= 'error'> $error_apellidoLargo </p>";
-                    echo "<p class= 'error'> $error_apellidoInvalido </p>";
-                    echo "<p class= 'error'> $error_usuarioLargo </p>";
-                    echo "<p class= 'error'> $error_usuarioInvalido </p>";
-                    echo "<p class= 'error'> $error_correoInvalido </p>";                    
-                    echo "<p class= 'error'> $error_contraseñaNoCoincide </p>";
-                    echo "<p class= 'error'> $error_contraseñaCorta </p>";                    
+                    // include("validarRegistro.php");             
+                    // echo "<p class= 'error'> $error_nombreLargo </p>";
+                    // echo "<p class= 'error'> $error_nombreInvalido </p>";
+                    // echo "<p class= 'error'> $error_apellidoLargo </p>";
+                    // echo "<p class= 'error'> $error_apellidoInvalido </p>";
+                    // echo "<p class= 'error'> $error_usuarioLargo </p>";
+                    // echo "<p class= 'error'> $error_usuarioInvalido </p>";
+                    // echo "<p class= 'error'> $error_correoInvalido </p>";                    
+                    // echo "<p class= 'error'> $error_contraseñaNoCoincide </p>";
+                    // echo "<p class= 'error'> $error_contraseñaCorta </p>";                    
                 ?>
-                </div>                                      
-            
+                </div>
+                              
+            </form>   
+
         </div>
        
 
@@ -112,9 +115,7 @@
                 if ($correct_login) {
                     header('Location: inicio.php');
                 }   
-            }
-
-          
+            }          
 
         ?>
 

@@ -9,7 +9,7 @@
     $error_contraseñaNoCoincide= "";
     $error_contraseñaCorta = "";
     
-    if(isset($_POST['form'])){
+    if(isset($_POST['form'])) {
         $nombre = $_POST['name'];
         $apellido = $_POST['last_name'];
         $usuario = $_POST['username'];

@@ -21,6 +21,10 @@ function validarRegistro() {
     var confirmacionContraseñaRegistro = document.getElementById("confirmacionContraseñaRegistro").value;
     emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
+    if(String.length(contraseñaRegistro) < 6){
+        window.alert("Contraseña muy corta")
+    }
+    
     if (emailRegex.test(correo) == true) {
         if (nombre && apellido && usuario && correo && contraseñaRegistro && confirmacionContraseñaRegistro != null) {
             if (confirmarContraseña() == true) {
