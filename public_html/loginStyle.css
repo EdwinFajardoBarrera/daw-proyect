@@ -75,3 +75,7 @@ div.acceder{
   margin-right: 15%;
   margin-top: 10%;
 }
+
+.error{
+  color: red;
+}
