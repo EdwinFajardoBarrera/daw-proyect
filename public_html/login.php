@@ -43,13 +43,12 @@
                     echo "<p class= 'error'> $error_usuarioInvalido </p>";
                     echo "<p class= 'error'> $error_correoInvalido </p>";                    
                     echo "<p class= 'error'> $error_contraseñaNoCoincide </p>";
-                    echo "<p class= 'error'> $error_contraseñaCorta </p>";
-                    
+                    echo "<p class= 'error'> $error_contraseñaCorta </p>";                    
                 ?>
                 </div>
                               
-            </form>
-            
+            </form>   
+
         </div>
        
 
@@ -83,8 +82,8 @@
 
                 $instancia->keepData($instancia);
 
-                $name = $_POST['name'];
-                $password = $_POST['password'];
+                //$name = $_POST['name'];
+                //$password = $_POST['password'];
                 $captcha = $_POST['g-recaptcha-response'];
                 
                 $secret = '6LdJRXcUAAAAALouIjSUxXaQmAEuYLqLgnPHv7wG';
@@ -108,8 +107,6 @@
                     } 
                 }
             }
-
-
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
                 $name = $_POST["user"];
