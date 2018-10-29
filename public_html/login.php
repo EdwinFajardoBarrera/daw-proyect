@@ -82,19 +82,7 @@
                 $instancia->setPassword($password);
 
                 $instancia->keepData($instancia);
-            }
 
-            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
-                $name = $_POST["user"];
-                $password = $_POST["password"];
-                $correct_login =  $instancia->isValidLogin($name, $password);
-                if ($correct_login) {
-                    header('Location: inicio.php');
-                }   
-            }
-
-            if(!empty($_POST)){
-		
                 $name = $_POST['name'];
                 $password = $_POST['password'];
                 $captcha = $_POST['g-recaptcha-response'];
@@ -120,6 +108,19 @@
                         } 
                 }
             }
+
+
+
+            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
+                $name = $_POST["user"];
+                $password = $_POST["password"];
+                $correct_login =  $instancia->isValidLogin($name, $password);
+                if ($correct_login) {
+                    header('Location: inicio.php');
+                }   
+            }
+
+          
 
         ?>
 
