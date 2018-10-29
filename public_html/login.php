@@ -115,7 +115,7 @@
                     if(!$arr['success'])
                     {
                         echo '<h3>Error al comprobar Captcha </h3>';
-                        } 
+                    } 
                 }
             }
 
