@@ -127,10 +127,11 @@
 
                 if ($user == $columna['Username'] && $password == $columna['Password']) {
                     session_start();
+                    session_cache_expire(1);
                     $_SESSION['Username'] = $user;
                     echo "<script>
                      alert('Se inició sesión exitosamente');
-                     window.location= 'login.php'
+                     window.location= 'inicio.php'
                         </script>";
                     header('Location: inicio.php');
                 } else {
