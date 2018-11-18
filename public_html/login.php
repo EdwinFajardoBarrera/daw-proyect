@@ -1,5 +1,10 @@
 <html lang="es">
-
+    <?php
+    session_start();
+    if (isset($_SESSION['Username'])) {
+        header('Location: inicio.php');
+    }
+    ?>
     <head>
         <title> Registro </title>
         <meta charset="UTF-8">
@@ -66,6 +71,7 @@
 
             <?php
             require "./Models/User.php";
+            require './Conexion/Conexion.php';
             $instancia = new User();
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
@@ -107,22 +113,42 @@
                 }
             }
 
-            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
-                $name = $_POST["user"];
+            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
+
+                $ctrlConexion = new Conexion();
+                $user = $_POST["user"];
                 $password = $_POST["password"];
-                $correct_login = $instancia->isValidLogin($name, $password);
-                if ($correct_login) {
-                    header('Location: inicio.php');
-                    //Cookie que se destruirá en 1 dia
-                    setcookie($name,$password,time() + 1*(60*60*24));
-                }
-                
-                if(isset($_POST['recordarUsuario'])) {
+
+                // establecer y realizar consulta. guardamos en variable.
+                $conexion = $ctrlConexion->getConexion();
+                $consulta = 'SELECT `Username`, `Password` FROM users WHERE `users`.`Username` = "' . $user . '"';
+                $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+                $columna = mysqli_fetch_array($resultado);
+
+                if ($user == $columna['Username'] && $password == $columna['Password']) {
+                    session_start();
+                    $_SESSION['Username'] = $user;
                     echo "<script>
-                     alert('Se recordará el usuario');
+                     alert('Se inició sesión exitosamente');
                      window.location= 'login.php'
                         </script>";
+                    header('Location: inicio.php');
+                } else {
+
+                    if ($user == $columna['Username']) {
+                        echo "<script>
+                         alert('Contraseña incorrecta');
+                         window.location= 'login.php'
+                            </script>;";
+                    } else {
+                        echo "<script>
+                         alert('No existe el usuario');
+                         window.location= 'login.php'
+                            </script>;";
+                    }
                 }
+
+                $ctrlConexion ->closeConexion($conexion);
             }
             ?>
 
