@@ -62,8 +62,8 @@
                 <form id="login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <input type="hidden" name="form" value="login">
                     <p class="subtitle">Acceder</p>
-                    <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario">
-                    <input type="password" id="contraseñaAcceso" name="password" placeholder="Contraseña">
+                    <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario" required>
+                    <input type="password" id="contraseñaAcceso" name="password" placeholder="Contraseña"required>
                     <input type="checkbox" id="recordarUsuarioChBox" name="recordarUsuario" value="valor1">Recordarme en este equipo
                     <input type="submit" value="Acceder">
                 </form>
@@ -120,7 +120,7 @@
                 $password = $_POST["password"];
 
                 // establecer y realizar consulta. guardamos en variable.
-                $conexion = $ctrlConexion->getConexion();
+                $conexion = $ctrlConexion->startConexion();
                 $consulta = 'SELECT `Username`, `Password` FROM users WHERE `users`.`Username` = "' . $user . '"';
                 $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
                 $columna = mysqli_fetch_array($resultado);

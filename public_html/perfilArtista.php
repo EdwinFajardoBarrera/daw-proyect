@@ -9,34 +9,22 @@ if (!isset($_SESSION['Username'])) {
 
 require './Conexion/Conexion.php';
 
-    $user = $_SESSION['Username'];
-    $ctrlConexion = new Conexion();
-    $conexion = $ctrlConexion->getConexion();
-
-    $consulta = 'SELECT `Username`, `Name` FROM users WHERE `users`.`Username` = "' . $user . '"';
-    $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-    $columna = mysqli_fetch_array($resultado);
-
-    $username = $columna['Name'];
-    
-    $ctrlConexion ->closeConexion($conexion);
+$ctrlConexion = new Conexion();
+$conexion = $ctrlConexion->startConexion();
+$username = $ctrlConexion->getNombreUsuario($_SESSION['Username'], $conexion)
 ?>
 <html>
 
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Perfil de <?=$username?></title>
+        <title>Perfil de <?= $username ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
         <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
         <script type="text/javascript" src="scripts.js"></script>
 
     </head>
-    <?php
-    
-    
-    ?>
     <body>
         <main style="height:900px; ">
             <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
@@ -64,7 +52,8 @@ require './Conexion/Conexion.php';
                         </div>
 
                         <div id="div_descrip">
-                            <div id="edit-description-button"><a class="button-edit" onclick="editInfo()">Editar</a></div>
+                            <div id="edit-description-button"><a class="button-edit" id="change-info-button" onclick="editInfo()">Editar</a></div>
+                            <!-- Futura consulta a BD !-->
                             <p id="description-pane">Haz una breve descripcion tuya... Como expresas tu arte? Que te gusta mas en el mundo?</p>
                             <br>
                         </div>

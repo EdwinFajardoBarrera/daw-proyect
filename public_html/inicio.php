@@ -62,7 +62,7 @@ and open the template in the editor.
                 <!-- imágenes -->
                 <div class="mySlides fade" style="display: block;">
                     <img src="DB/designs/design3.jpg" width="100%" height="500">
-                    <iframe class="area-comentarios" src="comentarios.html" frameborder="0" width="100%" height="90"></iframe>
+                    <iframe class="area-comentarios" src="comentarios.php" frameborder="0" width="100%" height="90" ></iframe>
                 </div>
 
                 <!-- genera imágenes de forma dinámica -->
