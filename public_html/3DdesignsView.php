@@ -6,48 +6,33 @@ and open the template in the editor.
 -->
 <html>
     <?php
-        $RUTA_ARCHIVO = '../3Ddesigns.txt';
-        $fpDatos = fopen($RUTA_ARCHIVO, 'r');
-        
-        if(!$fpDatos) {
-            echo 'ERROR: No ha sido posble encontrar el archivo.';
-            exit;
-        }
-        
-        $contador = 0;
+        require './Conexion/Conexion.php';
+    
+        $ctrlConexion = new Conexion();
+        $conexion = $ctrlConexion->startConexion();
+        $consulta = "SELECT * FROM images WHERE imageType='3Ddesigns'";
+        $resultado = $conexion->query($consulta);
+     
         $numImagen = 0;
-        while(!feof($fpDatos)) { 
-            $linea = fgets($fpDatos); 
-            $field[$contador] = explode('|', $linea);
-
-            foreach($field[$contador] as $imagen) { 
-
-                $imagen = trim($imagen);
-
-                if($imagen != "") {
-                    $todasLasImagenes[$numImagen] = 
+        while($columna = $resultado->fetch_assoc()) {  
+            
+            $todasLasImagenes[$numImagen] = 
                         '
                          <div class="responsive">
                             <div class="gallery container">
                               <div class="image-header">
-                                <span style="float:left"><a href="#">Artista</a></span><span style="float:right"><a href="perfilVisitante.html">Seguir</a></span>
+                                <span style="float:left"><a href="#">Artista</a></span><span style="float:right"><a href="perfilVisitante.php">Seguir</a></span>
                               </div>
-                                  <a target="_blank" href="DB/3Ddesings/' . $imagen . '.jpg">
-                                <img src="DB/3Ddesigns/' . $imagen . '.jpg" alt="Cinque Terre" width="100%" height="400">
+                                  <a target="_blank" href="DB/3Ddesigns/' . $columna["imageName"] . '' . $columna["imageExtension"] .'">
+                                <img src="DB/3Ddesigns/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="100%" height="400">
                               </a>
                               <div class="desc">Descripcion</div>
                             </div>
                           </div> 
                         ';
                     
-                    $numImagen++;
-                }
-
-
-            }
-
-            $fpDatos++;
-
+            $numImagen++;
+            
         }
     ?>
     <head>
