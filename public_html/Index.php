@@ -23,7 +23,7 @@
             <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
 
             <div class="registro" id="registroDiv">
-                <form id="registroForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form id="registroForm" method="post" action="Conexion/createUser.php">
                     <input type="hidden" name="form" value="create">
                     <p class="subtitle">Registrarse</p>
                     <input type="name" id="nombre" name="name" placeholder="Nombre" required>
@@ -37,20 +37,6 @@
                     <input onclick = validarRegistro(); type="submit" value="Crear" name="submitRegistro">
 
                 </form>
-
-                <div><?php
-                    // include("validarRegistro.php");             
-                    // echo "<p class= 'error'> $error_nombreLargo </p>";
-                    // echo "<p class= 'error'> $error_nombreInvalido </p>";
-                    // echo "<p class= 'error'> $error_apellidoLargo </p>";
-                    // echo "<p class= 'error'> $error_apellidoInvalido </p>";
-                    // echo "<p class= 'error'> $error_usuarioLargo </p>";
-                    // echo "<p class= 'error'> $error_usuarioInvalido </p>";
-                    // echo "<p class= 'error'> $error_correoInvalido </p>";                    
-                    // echo "<p class= 'error'> $error_contraseñaNoCoincide </p>";
-                    // echo "<p class= 'error'> $error_contraseñaCorta </p>";                    
-                    ?>
-                </div>
 
                 </form>   
 
@@ -75,19 +61,19 @@
             $instancia = new User();
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
-                $name = $_POST["name"];
-                $last_name = $_POST["last_name"];
-                $username = $_POST["username"];
-                $email = $_POST["email"];
-                $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+                // $name = $_POST["name"];
+                // $last_name = $_POST["last_name"];
+                // $username = $_POST["username"];
+                // $email = $_POST["email"];
+                // $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
-                $instancia->setName($name);
-                $instancia->setLastName($last_name);
-                $instancia->setUsername($username);
-                $instancia->setEmail($email);
-                $instancia->setPassword($password);
+                // $instancia->setName($name);
+                // $instancia->setLastName($last_name);
+                // $instancia->setUsername($username);
+                // $instancia->setEmail($email);
+                // $instancia->setPassword($password);
 
-                $instancia->keepData($instancia);
+                // $instancia->keepData($instancia);
 
                 //$name = $_POST['name'];
                 //$password = $_POST['password'];
@@ -99,7 +85,7 @@
 
                     echo "<script>
                      alert('No verificaste el captcha... Robot?');
-                     window.location= 'login.php'
+                     window.location= 'index.php'
                         </script>";
                 } else {
 
@@ -139,12 +125,12 @@
                     if ($user == $columna['Username']) {
                         echo "<script>
                          alert('Contraseña incorrecta');
-                         window.location= 'login.php'
+                         window.location= 'index.php'
                             </script>;";
                     } else {
                         echo "<script>
                          alert('No existe el usuario');
-                         window.location= 'login.php'
+                         window.location= 'index.php'
                             </script>;";
                     }
                 }

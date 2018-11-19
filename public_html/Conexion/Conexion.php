@@ -3,7 +3,7 @@
 class Conexion {
 
     private $usuario = "root";
-    private $password = "fireemblem1";
+    private $password = "root";
     private $servidor = "localhost";
     private $basededatos = "wgt-db";
 
@@ -13,7 +13,7 @@ class Conexion {
 
     public function startConexion() {
 //creación de la conexión a la base de datos con mysql_connect()
-        $conexion = new mysqli($this->servidor, $this->usuario, $this->password, $this->basededatos);
+        $conexion = new mysqli($this->host, $this->usuario, $this->password, $this->basededatos);
 
         /* comprueba la conexión */
         if (mysqli_connect_errno()) {
@@ -32,7 +32,7 @@ class Conexion {
         $user = $sessionUser;
         $conexion = $conexEst;
 
-        $consulta = 'SELECT `Username`, `Name` FROM users WHERE `users`.`Username` = "' . $user . '"';
+        $consulta = 'SELECT `username`, `name` FROM users WHERE `users`.`username` = "' . $user . '"';
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
         $columna = mysqli_fetch_array($resultado);
         $username = $columna['Name'];
