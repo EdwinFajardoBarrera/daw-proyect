@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 // sql to create table
-$sql = "CREATE TABLE datosPerfil (
+$sql = "CREATE TABLE profileData (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(50) NOT NULL,
 lastname VARCHAR(50) NOT NULL,
