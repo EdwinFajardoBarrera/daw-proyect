@@ -1,44 +1,30 @@
 <!DOCTYPE html>
 <html>
 <?php 
+    require './Conexion/Conexion.php';
+
     $buscar = isset($_GET['buscar']) ?$_GET['buscar'] :"";
     $mostarImagenes = false;
     
     if($buscar != null) {
+        $ctrlConexion = new Conexion();
+        $conexion = $ctrlConexion->startConexion();
+        $consulta = "SELECT * FROM images";
+        $resultado = $conexion->query($consulta); 
         
-        $RUTA_ARCHIVO = '../all_images.txt';
-        $fpDatos = fopen($RUTA_ARCHIVO, 'r');
-
-        if(!$fpDatos) {
-            echo 'ERROR: No ha sido posble encontrar el archivo.';
-            exit;
-        }
-        
-        $contador = 0;
-        $contImagen = 0;
         $numImagen = 0;
-        while(!feof($fpDatos)) { 
-            $contador++;
-
-            $linea = fgets($fpDatos); 
-            $field[$contador] = explode('|', $linea);
+        while($columna = $resultado->fetch_assoc()) {   
+            similar_text($buscar, $columna["imageName"], $porcentaje);
             
-            foreach($field[$contador] as $imagen) {
-               $imagen = substr($imagen, 0, - 1);
-               
-               if($buscar == $imagen) {
-                   $mostarImagenes = true;
-                   
-                   $contImagen++;    
-                   $resultados[$numImagen] = '<img src="DB/all_images/' . $buscar . $contImagen . '.jpg" class="acomodar" width="100%" height="400"> ' ;
-                   $numImagen++;
-               }
-               
+            if($porcentaje >= 70) {  
+                $mostarImagenes = true;
+                
+                $resultados[$numImagen] = '<img src="DB/'. $columna["imageType"] . '/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" '
+                        . 'class="acomodar" width="100%" height="400"> ' ;
+                $numImagen++;
             }
-
-            $fpDatos++;
+            
         }
-        
         
     }
 
