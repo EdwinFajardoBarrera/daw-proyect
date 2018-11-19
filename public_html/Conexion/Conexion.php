@@ -4,7 +4,7 @@ class Conexion {
 
     private $usuario = "root";
     private $password = "root";
-    private $servidor = "localhost";
+    private $host = "localhost";
     private $basededatos = "wgt-db";
 
     function __construct() {
@@ -32,14 +32,32 @@ class Conexion {
         $user = $sessionUser;
         $conexion = $conexEst;
 
-        $consulta = 'SELECT `username`, `name` FROM users WHERE `users`.`username` = "' . $user . '"';
+        $consulta = 'SELECT PD.`name`, PD.lastname
+FROM profiledata PD, profile P
+WHERE PD.id = P.id ;';
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
         $columna = mysqli_fetch_array($resultado);
-        $username = $columna['Name'];
+        $username = $columna['name'] .' '. $columna['lastname'];
 
         mysqli_close($conexion);
 
         return $username;
+    }
+    
+    public function getDescripcionUsuario($sessionUser, $conexEst) {
+        $user = $sessionUser;
+        $conexion = $conexEst;
+
+        $consulta = "SELECT PD.description
+FROM profiledata PD, profile P
+WHERE PD.id = P.id AND P.`name` = '".$user."';";
+        $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+        $columna = mysqli_fetch_array($resultado);
+        $descripcion = $columna['description'];
+
+        mysqli_close($conexion);
+
+        return $descripcion;
     }
 
 }

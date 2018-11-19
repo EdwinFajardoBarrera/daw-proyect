@@ -11,7 +11,9 @@ require './Conexion/Conexion.php';
 
 $ctrlConexion = new Conexion();
 $conexion = $ctrlConexion->startConexion();
-$username = $ctrlConexion->getNombreUsuario($_SESSION['Username'], $conexion)
+$username = $ctrlConexion->getNombreUsuario($_SESSION['Username'], $conexion);
+$conexion = $ctrlConexion->startConexion();
+$comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username'], $conexion);
 ?>
 <html>
 
@@ -54,7 +56,7 @@ $username = $ctrlConexion->getNombreUsuario($_SESSION['Username'], $conexion)
                         <div id="div_descrip">
                             <div id="edit-description-button"><a class="button-edit" id="change-info-button" onclick="editInfo()">Editar</a></div>
                             <!-- Futura consulta a BD !-->
-                            <p id="description-pane">Haz una breve descripcion tuya... Como expresas tu arte? Que te gusta mas en el mundo?</p>
+                            <p id="description-pane"><?= $comentario ?></p>
                             <br>
                         </div>
                     </div>
