@@ -20,14 +20,21 @@ function editName() {
 }
 
 function editInfo(){
-    var c_nombre = document.getElementById('description-pane');
+    var btn_text = document.getElementById('change-info-button').innerHTML;
+    var contenido = document.getElementById('description-pane');
     var cadena = document.getElementById('edit-description-textBox');
 
+    if(btn_text == 'Editar'){
+        document.getElementById('change-info-button').innerHTML ="Listo</a></div>";
+    } else {
+        document.getElementById('change-info-button').innerHTML ="Editar</a></div>";
+    }
     if (cadena == null) {
-        c_nombre.innerHTML = "<input type= \"text\" id=\"edit-description-textBox\"><a class=\"button-edit\" id=\"edit-description-button\" onclick=\"editInfo()\">Listo</a>";
+        contenido.innerHTML = '<textarea type= "text" id="edit-description-textBox" placeholder="Llena tu descripci&oacute;n" rows="8" cols="150">'
+                +document.getElementById("description-pane").innerHTML; +'</textarea>';
     } else{
         cadena = cadena.value;
-        c_nombre.innerHTML = cadena; //+ "<a class=\"button-edit\" id=\"edit-description-button\" onclick=\"editInfo()\">Editar</a>";
+        contenido.innerHTML = cadena; //+ "<a class=\"button-edit\" id=\"edit-description-button\" onclick=\"editInfo()\">Editar</a>";
     }
 }
 

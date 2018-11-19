@@ -1,5 +1,10 @@
 <html lang="es">
-
+    <?php
+    session_start();
+    if (isset($_SESSION['Username'])) {
+        header('Location: inicio.php');
+    }
+    ?>
     <head>
         <title> Registro </title>
         <meta charset="UTF-8">
@@ -18,7 +23,7 @@
             <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
 
             <div class="registro" id="registroDiv">
-                <form id="registroForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form id="registroForm" method="post" action="Conexion/createUser.php">
                     <input type="hidden" name="form" value="create">
                     <p class="subtitle">Registrarse</p>
                     <input type="name" id="nombre" name="name" placeholder="Nombre" required>
@@ -33,20 +38,6 @@
 
                 </form>
 
-                <div><?php
-                    // include("validarRegistro.php");             
-                    // echo "<p class= 'error'> $error_nombreLargo </p>";
-                    // echo "<p class= 'error'> $error_nombreInvalido </p>";
-                    // echo "<p class= 'error'> $error_apellidoLargo </p>";
-                    // echo "<p class= 'error'> $error_apellidoInvalido </p>";
-                    // echo "<p class= 'error'> $error_usuarioLargo </p>";
-                    // echo "<p class= 'error'> $error_usuarioInvalido </p>";
-                    // echo "<p class= 'error'> $error_correoInvalido </p>";                    
-                    // echo "<p class= 'error'> $error_contraseñaNoCoincide </p>";
-                    // echo "<p class= 'error'> $error_contraseñaCorta </p>";                    
-                    ?>
-                </div>
-
                 </form>   
 
             </div>
@@ -57,8 +48,8 @@
                 <form id="login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <input type="hidden" name="form" value="login">
                     <p class="subtitle">Acceder</p>
-                    <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario">
-                    <input type="password" id="contraseñaAcceso" name="password" placeholder="Contraseña">
+                    <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario" required>
+                    <input type="password" id="contraseñaAcceso" name="password" placeholder="Contraseña"required>
                     <input type="checkbox" id="recordarUsuarioChBox" name="recordarUsuario" value="valor1">Recordarme en este equipo
                     <input type="submit" value="Acceder">
                 </form>
@@ -66,22 +57,23 @@
 
             <?php
             require "./Models/User.php";
+            require './Conexion/Conexion.php';
             $instancia = new User();
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
-                $name = $_POST["name"];
-                $last_name = $_POST["last_name"];
-                $username = $_POST["username"];
-                $email = $_POST["email"];
-                $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+                // $name = $_POST["name"];
+                // $last_name = $_POST["last_name"];
+                // $username = $_POST["username"];
+                // $email = $_POST["email"];
+                // $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
-                $instancia->setName($name);
-                $instancia->setLastName($last_name);
-                $instancia->setUsername($username);
-                $instancia->setEmail($email);
-                $instancia->setPassword($password);
+                // $instancia->setName($name);
+                // $instancia->setLastName($last_name);
+                // $instancia->setUsername($username);
+                // $instancia->setEmail($email);
+                // $instancia->setPassword($password);
 
-                $instancia->keepData($instancia);
+                // $instancia->keepData($instancia);
 
                 //$name = $_POST['name'];
                 //$password = $_POST['password'];
@@ -93,7 +85,7 @@
 
                     echo "<script>
                      alert('No verificaste el captcha... Robot?');
-                     window.location= 'login.php'
+                     window.location= 'index.php'
                         </script>";
                 } else {
 
@@ -107,22 +99,43 @@
                 }
             }
 
-            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "login") {
-                $name = $_POST["user"];
+            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
+
+                $ctrlConexion = new Conexion();
+                $user = $_POST["user"];
                 $password = $_POST["password"];
-                $correct_login = $instancia->isValidLogin($name, $password);
-                if ($correct_login) {
-                    header('Location: inicio.php');
-                    //Cookie que se destruirá en 1 dia
-                    setcookie($name,$password,time() + 1*(60*60*24));
-                }
-                
-                if(isset($_POST['recordarUsuario'])) {
+
+                // establecer y realizar consulta. guardamos en variable.
+                $conexion = $ctrlConexion->startConexion();
+                $consulta = 'SELECT `Username`, `Password` FROM users WHERE `users`.`Username` = "' . $user . '"';
+                $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+                $columna = mysqli_fetch_array($resultado);
+
+                if ($user == $columna['Username'] && $password == $columna['Password']) {
+                    session_start();
+                    session_cache_expire(1);
+                    $_SESSION['Username'] = $user;
                     echo "<script>
-                     alert('Se recordará el usuario');
-                     window.location= 'login.php'
+                     alert('Se inició sesión exitosamente');
+                     window.location= 'inicio.php'
                         </script>";
+                    header('Location: inicio.php');
+                } else {
+
+                    if ($user == $columna['Username']) {
+                        echo "<script>
+                         alert('Contraseña incorrecta');
+                         window.location= 'index.php'
+                            </script>;";
+                    } else {
+                        echo "<script>
+                         alert('No existe el usuario');
+                         window.location= 'index.php'
+                            </script>;";
+                    }
                 }
+
+                $ctrlConexion ->closeConexion($conexion);
             }
             ?>
 

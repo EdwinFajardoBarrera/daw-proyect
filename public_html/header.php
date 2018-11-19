@@ -4,7 +4,6 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
 <?php
     if(isset($_POST['search'])) {
         $buscar = $_POST['search'];
@@ -15,6 +14,8 @@ and open the template in the editor.
         exit;
     }
 ?>
+
+<html>
 <head>
   <title>Cabecera</title>
   <meta charset="UTF-8">
@@ -43,7 +44,14 @@ and open the template in the editor.
     <a href="drawsView.php" title="Dibujo"><i class="fa fa-pencil"></i></a>
     <a href="designsView.php" title="Diseño Gráfico"><i class="fa fa-desktop"></i></a>
     <a href="3DdesignsView.php" title="Diseño 3D"><i class="fa fa-cube"></i></a>
-    <a href="login.php" title="Login"><i class="fa fa-user"></i></a>
+    <?php
+    session_start();
+    if (isset($_SESSION['Username'])) {
+        echo '<a href="perfilArtista.php" title="Perfil"><i class="fa fa-user"></i></a>';
+        echo '<a href="logout.php" title="Cerrar sesi&oacute;n">Salir</a>';
+    } 
+    ?> 
+    
 
   </nav>
 

@@ -254,6 +254,7 @@ div.desc {
     color: rgb(187, 187, 187);
     cursor: pointer;
     background-color: #00224d;
+    background: "./icons/editicon.png";
     border-radius: 10px;
     border: 2px double #000000;
   }
@@ -308,5 +309,14 @@ div.desc {
     padding: 5px;
     padding-bottom: 1px;
     overflow: scroll;
-    scroll-behavior: auto;
+}
+
+#edit-description-textbox{
+    text-align: center;
+    resize: none;
+}
+
+#edit-description-textbox::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 100px;/* Centrado vertical */
 }
