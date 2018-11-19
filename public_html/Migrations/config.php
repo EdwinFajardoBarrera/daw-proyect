@@ -5,9 +5,9 @@
  */
 $user = "root";
 
-$password = "";
+$password = "fireemblem1";
 
-$host = "127.0.0.1";
+$host = "localhost";
 
 $database = "wgt-db";
 

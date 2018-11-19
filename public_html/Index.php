@@ -61,22 +61,7 @@
             $instancia = new User();
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
-                // $name = $_POST["name"];
-                // $last_name = $_POST["last_name"];
-                // $username = $_POST["username"];
-                // $email = $_POST["email"];
-                // $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-
-                // $instancia->setName($name);
-                // $instancia->setLastName($last_name);
-                // $instancia->setUsername($username);
-                // $instancia->setEmail($email);
-                // $instancia->setPassword($password);
-
-                // $instancia->keepData($instancia);
-
-                //$name = $_POST['name'];
-                //$password = $_POST['password'];
+                
                 $captcha = $_POST['g-recaptcha-response'];
 
                 $secret = '6LdJRXcUAAAAALouIjSUxXaQmAEuYLqLgnPHv7wG';
@@ -107,11 +92,13 @@
 
                 // establecer y realizar consulta. guardamos en variable.
                 $conexion = $ctrlConexion->startConexion();
-                $consulta = 'SELECT `Username`, `Password` FROM users WHERE `users`.`Username` = "' . $user . '"';
+                $consulta = 'SELECT O.`name`, P.password
+                        FROM profiledata P, profile O
+                        WHERE P.id = O.id ;';
                 $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
                 $columna = mysqli_fetch_array($resultado);
 
-                if ($user == $columna['Username'] && $password == $columna['Password']) {
+                if ($user == $columna['name'] && $password == $columna['password']) {
                     session_start();
                     session_cache_expire(1);
                     $_SESSION['Username'] = $user;
@@ -122,7 +109,7 @@
                     header('Location: inicio.php');
                 } else {
 
-                    if ($user == $columna['Username']) {
+                    if ($user == $columna['name']) {
                         echo "<script>
                          alert('Contraseña incorrecta');
                          window.location= 'index.php'
