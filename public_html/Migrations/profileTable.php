@@ -1,6 +1,6 @@
 <?php
 
-include 'config.php';
+include 'Conexion/config.php';
 global $host, $user, $password, $database;
 
 // Create connection
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 $sql = "CREATE TABLE profile (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(150) NOT NULL,
-reputation DOUBLE(50) NOT NULL,
+reputation FLOAT(50),
 status BOOLEAN NOT NULL,
 reg_date TIMESTAMP
 )";

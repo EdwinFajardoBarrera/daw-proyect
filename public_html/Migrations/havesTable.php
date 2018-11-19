@@ -1,6 +1,6 @@
 <?php
 
-include 'config.php';
+include 'Conexion/config.php';
 global $host, $user, $password, $database;
 
 // Create connection

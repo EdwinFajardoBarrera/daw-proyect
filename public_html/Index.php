@@ -23,7 +23,7 @@
             <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
 
             <div class="registro" id="registroDiv">
-                <form id="registroForm" method="post" action="Conexion/createUser.php">
+                <form id="registroForm" method="post" action="Migrations/createProfile.php">
                     <input type="hidden" name="form" value="create">
                     <p class="subtitle">Registrarse</p>
                     <input type="name" id="nombre" name="name" placeholder="Nombre" required>
