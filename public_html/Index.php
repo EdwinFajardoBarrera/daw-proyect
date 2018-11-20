@@ -56,9 +56,8 @@
             </div>
 
             <?php
-            require "./Models/User.php";
-            require './Conexion/Conexion.php';
-            $instancia = new User();
+            include './Models/User.php';
+            include './Conexion/QueryConsults.php';
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
 
@@ -86,17 +85,12 @@
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
 
-                $ctrlConexion = new Conexion();
+                $ctrlConexion = new QueryConsults();
                 $user = $_POST["user"];
                 $password = $_POST["password"];
 
                 // establecer y realizar consulta. guardamos en variable.
-                $conexion = $ctrlConexion->startConexion();
-                $consulta = "SELECT P.`name`, PD.password
-FROM profiledata PD, profile P
-WHERE P.`name` = '" . $user . "' AND PD.id_profile = P.id;";
-                $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-                $columna = mysqli_fetch_array($resultado);
+                $columna = $ctrlConexion ->getUserAndPassword($user);
 
                 if ($user == $columna['name'] && password_verify($password, $columna['password'])) {
                     session_start();
@@ -122,7 +116,6 @@ WHERE P.`name` = '" . $user . "' AND PD.id_profile = P.id;";
                     }
                 }
 
-                $ctrlConexion->closeConexion($conexion);
             }
             ?>
 

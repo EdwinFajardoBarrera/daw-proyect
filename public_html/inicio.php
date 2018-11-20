@@ -14,12 +14,13 @@ and open the template in the editor.
 //        </script>;";
 //    }
     
-    require './Conexion/Conexion.php';
+    require './Conexion/QueryConsults.php';
     
-    $ctrlConexion = new Conexion();
+    $ctrlConexion = new QueryConsults();
     $conexion = $ctrlConexion->startConexion();
     $consulta = "SELECT * FROM images";
-    $resultado = $conexion->query($consulta);  
+    $resultado = $conexion->query($consulta);
+    $conexion ->close();
     
     $numImagen = 0;
     while($columna = $resultado->fetch_assoc()) {  

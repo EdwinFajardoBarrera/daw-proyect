@@ -7,7 +7,7 @@
     $mostarImagenes = false;
     
     if($buscar != null) {
-        $ctrlConexion = new Conexion();
+        $ctrlConexion = new QueryConsults();
         $conexion = $ctrlConexion->startConexion();
         $consulta = "SELECT * FROM images";
         $resultado = $conexion->query($consulta); 

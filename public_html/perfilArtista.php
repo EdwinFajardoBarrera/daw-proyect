@@ -3,26 +3,23 @@ session_start();
 if (!isset($_SESSION['Username'])) {
     echo "<script>
         alert('No existe una sesión activa');
-        window.location= 'login.php'
+        window.location= 'Index.php'
         </script>;";
 }
 
-require './Conexion/Conexion.php';
+include 'Conexion/QueryConsults.php';
 
-$ctrlConexion = new Conexion();
-$conexion = $ctrlConexion->startConexion();
-$username = $ctrlConexion->getNombreUsuario($_SESSION['Username'], $conexion);
-$conexion = $ctrlConexion->startConexion();
-$comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username'], $conexion);
-$conexion = $ctrlConexion->startConexion();
-$rate = $ctrlConexion->getRateUsuario($_SESSION['Username'], $conexion);
+$ctrlConexion = new QueryConsults();
+$username = $ctrlConexion->getNombreUsuario($_SESSION['Username']);
+$comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username']);
+$rate = $ctrlConexion->getRateUsuario($_SESSION['Username']);
 ?>
 <html>
 
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Perfil de <?= $username ?></title>
+        <title>Perfil de <?= utf8_encode($username) ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
         <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
@@ -38,7 +35,7 @@ $rate = $ctrlConexion->getRateUsuario($_SESSION['Username'], $conexion);
                         <div id="div_izq">
                             <img id="fotoPerfil" src="icons/perfil.png" width="50" height="200">
 
-                            <p id="nombreUsuario"><?php echo $username ?><a class="button-edit" id="change-name-btn" onclick="editName()">Editar</a></p>
+                            <p id="nombreUsuario"><?= utf8_encode($username)?><a class="button-edit" id="change-name-btn" onclick="editName()">Editar</a></p>
                             <br>
                         </div>
                         <div id="div_der">

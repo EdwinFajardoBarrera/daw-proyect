@@ -8,7 +8,7 @@ and open the template in the editor.
     <?php
         require './Conexion/Conexion.php';
     
-        $ctrlConexion = new Conexion();
+        $ctrlConexion = new QueryConsults();
         $conexion = $ctrlConexion->startConexion();
         $consulta = "SELECT * FROM images WHERE imageType='draws'";
         $resultado = $conexion->query($consulta);
