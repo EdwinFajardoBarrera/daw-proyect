@@ -13,6 +13,7 @@ $ctrlConexion = new QueryConsults();
 $username = $ctrlConexion->getNombreUsuario($_SESSION['Username']);
 $comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username']);
 $rate = $ctrlConexion->getRateUsuario($_SESSION['Username']);
+$imagenes = $ctrlConexion->getImagesByUser($_SESSION['Username']);
 ?>
 <html>
 
@@ -59,14 +60,23 @@ $rate = $ctrlConexion->getRateUsuario($_SESSION['Username']);
                             <br>
                         </div>
                     </div>
-
-                    <div style="margin-left:10rem; margin-right: 10rem;">
-                        <div class="titulo">
-                            <p>Sube algunas imagenes para que el mundo empiece a conocerte</p>
-                        </div>
-
-                    </div>
-
+                    <?php
+                    if (count($imagenes)<= 0) {
+                        echo'
+                            <div style="margin-left:10rem; margin-right: 10rem;">
+                                <div class="titulo">
+                                    <p>Sube algunas imagenes para que el mundo empiece a conocerte</p>
+                                </div>
+                            </div>';
+                    } else {
+                        //Genera las imagenes
+                        echo '<div class="content">';
+                        for ($cont = 0; $cont < count($imagenes); $cont++) {
+                            echo $imagenes[$cont];
+                        }
+                        echo '</div>';
+                    }
+                    ?>
                 </div>
             </div>
 
