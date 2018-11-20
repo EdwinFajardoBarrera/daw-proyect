@@ -93,6 +93,44 @@ class QueryConsults {
 
         return $total;
     }
+    
+    public function getImagesByUser($sessionUser){
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $consulta = "SELECT I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
+            WHERE PR.`name` = '". $sessionUser ."' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+        $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+        
+        $numImagen = 0;
+        while($columna = $resultado->fetch_assoc()) {  
+            
+            $todasLasImagenes[$numImagen] = 
+                        '
+                         <div class="responsive">
+                            <div class="gallery container">
+                              <div class="image-header">
+                                <span style="float:left"><a href="#">Artista</a></span><span style="float:right"><a href="perfilVisitante.php">Seguir</a></span>
+                              </div>
+                                  <a target="_blank" href="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'">
+                                <img src="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'" alt="Cinque Terre" width="100%" height="400">
+                              </a>
+                              <div class="desc">Descripcion</div>
+                            </div>
+                          </div> 
+                        ';
+                    
+            $numImagen++;
+            
+        }
+        $conexion->close();
+        return $todasLasImagenes;
+    }
 
     public function startConexion(){
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
