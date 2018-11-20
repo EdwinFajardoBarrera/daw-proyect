@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php 
-    require './Conexion/Conexion.php';
+    require './Conexion/QueryConsults.php';
 
     $buscar = isset($_GET['buscar']) ?$_GET['buscar'] :"";
     $mostarImagenes = false;
@@ -10,7 +10,8 @@
         $ctrlConexion = new QueryConsults();
         $conexion = $ctrlConexion->startConexion();
         $consulta = "SELECT * FROM images";
-        $resultado = $conexion->query($consulta); 
+        $resultado = $conexion->query($consulta);
+        $conexion->close();
         
         $numImagen = 0;
         while($columna = $resultado->fetch_assoc()) {   

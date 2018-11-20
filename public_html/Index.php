@@ -45,7 +45,7 @@
 
 
             <div class="acceder">
-                <form id="login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form id="login" method="post" action="login.php">
                     <input type="hidden" name="form" value="login">
                     <p class="subtitle">Acceder</p>
                     <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario" required>
@@ -56,9 +56,6 @@
             </div>
 
             <?php
-            include './Models/User.php';
-            include './Conexion/QueryConsults.php';
-
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
 
                 $captcha = $_POST['g-recaptcha-response'];
@@ -81,41 +78,6 @@
                         echo '<h3>Error al comprobar Captcha </h3>';
                     }
                 }
-            }
-
-            if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
-
-                $ctrlConexion = new QueryConsults();
-                $user = $_POST["user"];
-                $password = $_POST["password"];
-
-                // establecer y realizar consulta. guardamos en variable.
-                $columna = $ctrlConexion ->getUserAndPassword($user);
-
-                if ($user == $columna['name'] && password_verify($password, $columna['password'])) {
-                    session_start();
-                    session_cache_expire(1);
-                    $_SESSION['Username'] = $user;
-                    echo "<script>
-                     alert('Se inició sesión exitosamente');
-                     window.location= 'inicio.php'
-                        </script>";
-                    header('Location: inicio.php');
-                } else {
-
-                    if ($user == $columna['name']) {
-                        echo "<script>
-                         alert('Contraseña incorrecta');
-                         window.location= 'index.php'
-                            </script>;";
-                    } else {
-                        echo "<script>
-                         alert('No existe el usuario');
-                         window.location= 'index.php'
-                            </script>;";
-                    }
-                }
-
             }
             ?>
 

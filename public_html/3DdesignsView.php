@@ -6,12 +6,13 @@ and open the template in the editor.
 -->
 <html>
     <?php
-        require './Conexion/Conexion.php';
+        require './Conexion/QueryConsults.php';
     
         $ctrlConexion = new QueryConsults();
         $conexion = $ctrlConexion->startConexion();
         $consulta = "SELECT * FROM images WHERE imageType='3Ddesigns'";
         $resultado = $conexion->query($consulta);
+        $conexion->close();
      
         $numImagen = 0;
         while($columna = $resultado->fetch_assoc()) {  
