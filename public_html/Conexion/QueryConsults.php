@@ -1,7 +1,7 @@
 <?php
 
 class QueryConsults {
-
+    
     private $user = "root";
     private $password = "fireemblem1";
     private $host = "localhost";
