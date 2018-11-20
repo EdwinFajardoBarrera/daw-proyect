@@ -61,7 +61,7 @@
             $instancia = new User();
 
             if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST['form'] == "create") {
-                
+
                 $captcha = $_POST['g-recaptcha-response'];
 
                 $secret = '6LdJRXcUAAAAALouIjSUxXaQmAEuYLqLgnPHv7wG';
@@ -92,13 +92,13 @@
 
                 // establecer y realizar consulta. guardamos en variable.
                 $conexion = $ctrlConexion->startConexion();
-                $consulta = 'SELECT O.`name`, P.password
-                        FROM profiledata P, profile O
-                        WHERE P.id = O.id ;';
+                $consulta = "SELECT P.`name`, PD.password
+FROM profiledata PD, profile P
+WHERE P.`name` = '" . $user . "' AND PD.id_profile = P.id;";
                 $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
                 $columna = mysqli_fetch_array($resultado);
 
-                if ($user == $columna['name'] && $password == $columna['password']) {
+                if ($user == $columna['name'] && password_verify($password, $columna['password'])) {
                     session_start();
                     session_cache_expire(1);
                     $_SESSION['Username'] = $user;
@@ -122,7 +122,7 @@
                     }
                 }
 
-                $ctrlConexion ->closeConexion($conexion);
+                $ctrlConexion->closeConexion($conexion);
             }
             ?>
 
