@@ -13,6 +13,7 @@ and open the template in the editor.
         header("location: searchResults.php? buscar=$buscar");
         exit;
     }
+    
 ?>
 
 <html>
@@ -49,9 +50,8 @@ and open the template in the editor.
     if (isset($_SESSION['Username'])) {
         echo '<a href="perfilArtista.php" title="Perfil"><i class="fa fa-user"></i></a>';
         echo '<a href="logout.php" title="Cerrar sesi&oacute;n">Salir</a>';
-    } 
+    }
     ?> 
-    
 
   </nav>
 
