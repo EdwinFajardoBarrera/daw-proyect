@@ -61,7 +61,7 @@ $imagenes = $ctrlConexion->getImagesByUser($_SESSION['Username']);
                         </div>
                     </div>
                     <?php
-                    if (count($imagenes)<= 0) {
+                    if ( is_array($imagenes) && count($imagenes)<= 0) {
                         echo'
                             <div style="margin-left:10rem; margin-right: 10rem;">
                                 <div class="titulo">
