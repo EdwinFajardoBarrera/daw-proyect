@@ -64,22 +64,25 @@ $imagenes = $ctrlConexion->getImagesByUser($_SESSION['Username']);
                     <br>
                     <form enctype="multipart/form-data" method="POST">
                         <center>
-                            <input name="archivoAsubir" type="file" multiple accept="image/jpeg, image/gif, image/png"/><br />
+                            <input name="archivoAsubir" type="file" multiple accept="image/jpeg, image/gif, image/png"><br />
                             <input type="radio" name="tipoImagen" value="draws"> Dibujo<br>
                             <input type="radio" name="tipoImagen" value="designs"> Diseño grafico<br>
-                            <input type="radio" name="tipoImagen" value="3ddesigns"> Diseño 3D<br>
+                            <input type="radio" name="tipoImagen" value="3Ddesigns"> Diseño 3D<br>
                             <input type="submit" value="Subir archivo" />
                         </center>
                     </form>
                     
                     <?php
                         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                            $tipoImagen = $_POST["tipoImagen"];
-                            $target_path = "DB/" . $tipoImagen . "/"; 
-                            $target_path = $target_path . basename( $_FILES['archivoAsubir']['name']); 
-
-                            if(move_uploaded_file($_FILES['archivoAsubir']['tmp_name'], $target_path)) { 
-                                echo "<center>El archivo ". basename( $_FILES['archivoAsubir']['name'])." ha sido subido exitosamente!</center>";  
+                            $tipoImagen = isset($_POST['tipoImagen']) ? $_POST['tipoImagen'] : null;
+                            
+                            if($tipoImagen) {
+                                $target_path = "DB/" . $tipoImagen . "/"; 
+                                $target_path = $target_path . basename( $_FILES['archivoAsubir']['name']); 
+                                if((move_uploaded_file($_FILES['archivoAsubir']['tmp_name'], $target_path)) && ($tipoImagen)) { 
+                                    echo "<center>El archivo ". basename( $_FILES['archivoAsubir']['name'])." ha sido subido exitosamente!</center>";  
+                                    include 'Migrations/saveImage.php';
+                                }
                             } else { 
                                 echo "<center>Hubo un error al subir tu archivo! Por favor intenta de nuevo</center>"; 
                             }
@@ -87,7 +90,13 @@ $imagenes = $ctrlConexion->getImagesByUser($_SESSION['Username']);
                     ?>
                     
                     <?php
-                    if ( is_array($imagenes) && count($imagenes)<= 0) {
+                        
+                        
+                    
+                    ?>
+                    
+                    <?php
+                    if (count($imagenes)<= 0) {
                         echo'
                             <div style="margin-left:10rem; margin-right: 10rem;">
                                 <div class="titulo">
