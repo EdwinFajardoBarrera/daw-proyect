@@ -82,7 +82,6 @@
                 }
             }
             ?>
-            <button onclick="updateComments(5)">Script</button>
         </main>
         <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe>
 

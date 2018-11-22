@@ -10,7 +10,7 @@ and open the template in the editor.
     require './Conexion/QueryConsults.php';
     
     if(isset($_COOKIE['user'])){
-    echo '<script>alert("Recordando usuario");</script>';
+    echo '<script>alert("Recordando usuario: '.$_COOKIE['user'].'");</script>';
     } else {echo '<script>alert("No se detecto cookie");</script>';}
     
     ?>
