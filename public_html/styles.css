@@ -308,7 +308,7 @@ div.desc {
     border-radius: 10px;
     padding: 5px;
     padding-bottom: 1px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #edit-description-textbox{

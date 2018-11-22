@@ -20,6 +20,7 @@
     <body>
         <main>
             <!-- HEADER -->
+            
             <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
 
             <div class="registro" id="registroDiv">
@@ -50,7 +51,7 @@
                     <p class="subtitle">Acceder</p>
                     <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario" required>
                     <input type="password" id="contraseñaAcceso" name="password" placeholder="Contraseña"required>
-                    <input type="checkbox" id="recordarUsuarioChBox" name="recordarUsuario" value="valor1">Recordarme en este equipo
+                    <input type="checkbox" id="recordarUsuarioChBox" name="recordar" value=1> Recordarme en este equipo
                     <input type="submit" value="Acceder">
                 </form>
             </div>
