@@ -23,7 +23,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
         $_SESSION['Username'] = $user;
         echo "<script>
                      alert('Se inició sesión exitosamente');
-                     window.location= document;
+                     window.location= inicio.php;
                         </script>";
         header('Location: inicio.php');
     } else {
@@ -31,15 +31,17 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
         if ($user == $columna['name']) {
             echo "<script>
                          alert('Contraseña incorrecta');
-                         window.location= document;
+                         window.location= inicio.php;
                             </script>;";
+                        header('Location: index.php');
         } else {
             echo "<script>
                          alert('No existe el usuario');
-                         window.location= document;
+                         window.location= inicio.php;
                             </script>;";
+                        header('Location: index.php');
         }
     }
 } else {
-    header('Location: Index.php');
+    header('Location: index.php');
 }
