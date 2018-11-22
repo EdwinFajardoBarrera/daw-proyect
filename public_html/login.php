@@ -21,9 +21,9 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
         $_SESSION['Username'] = $user;
         if ($_POST["recordar"] == 1) {
             if (isset($_COOKIE['user'])) {
-                unset($_COOKIE['user']);
+                Setcookie ('user', $datos, 0);
             }
-            setcookie("user", $user, time() + 10);
+            setcookie("user", $user, time() + 60*60*24/*1 dia*/);
             echo "<script>
                      alert('Se recordará al usuario: " . $_COOKIE['user'] . "');
                      window.location= Index.php;
@@ -31,7 +31,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
             header("refresh:0; url=login.php");
         } else {
             if (isset($_COOKIE['user'])) {
-                unset($_COOKIE['user']);
+                Setcookie ('user', "", 0);
             }
             echo "<script>
                      alert('No se recordará al usuario');
