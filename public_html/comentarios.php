@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
 
+<?php
+require_once 'Conexion/QuueryConsults.php';
+require_once 'Controllers/ControlComment.php';
+?>
+<html>
 <head>
   <title>Comentarios</title>
   <meta charset="UTF-8">

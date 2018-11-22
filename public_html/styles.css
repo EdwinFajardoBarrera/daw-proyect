@@ -264,6 +264,13 @@ div.desc {
     text-decoration:none;
   }
 
+/*-----------------------------Commentary box styles------------------------------------*/  
+  #comment-div{
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px;
+      height: auto
+  }
   
 #area-comentarios{
     text-decoration: none;
@@ -275,7 +282,7 @@ div.desc {
     font-size: 1rem;
     font-style: italic;
     color: rgb(187, 187, 187);
-    cursor: pointer;
+    cursor: auto;
     background-color: #00224d;
     border-radius: 5px;
     border: 2px double #000000;

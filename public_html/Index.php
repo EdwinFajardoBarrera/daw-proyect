@@ -12,6 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="./estilosInicio.css">
         <link rel="stylesheet" type="text/css" href="./loginStyle.css">
+        <script src="ajaxScripts.js"></script>
         <script type="text/javascript" src="loginScript.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
 
@@ -81,7 +82,7 @@
                 }
             }
             ?>
-
+            <button onclick="updateComments(5)">Script</button>
         </main>
         <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe>
 

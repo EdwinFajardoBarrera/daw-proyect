@@ -11,22 +11,17 @@
  *
  * @author Kirbey
  */
+include_once './Conexion/Conect.php';
 class Comment {
     
     private $id;
     private $username;
     private $contenido;
     
-    private $user = "root";
-    private $password = "fireemblem1";
-    private $host = "localhost";
-    private $database = "wgt-db";
-    
     public function __construct() {
-        
     }
     
-    public function getContenidoByUser() {
+    public function getContenidoByUser($user) {
         return $this->contenido;
     }
     
@@ -51,24 +46,19 @@ class Comment {
     }
     
     public function getCommentsOfImage($imageID){
-        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
-
-        /* comprueba la conexión */
-        if (mysqli_connect_errno()) {
-            printf("Conexion fallida: %s\n", mysqli_connect_error());
-            exit();
-        }
-
+        $connect = new Conect();
+        $conexion = $connect->getConexion();
+        $comments = array();
         $consulta = "select P.`name`, C.content 
             from profile P, comments C, writes W, images I, haves H
             where ". $imageID ." = I.id and I.id = H.id_image and C.id = H.id_comment and "
             . "W.id_profile = P.id and W.id_comment = C.id;";
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-        $columna = mysqli_fetch_array($resultado);
-        $cont = 0;
-        while ($columna != null){
-            $resultado[$cont] = $columna['name']. "," .$columna['content'];
+        
+        while($filas=$resultado->fetch_assoc()){
+            $comments[]=$filas;
         }
+        mysqli_close($conexion);
         return $resultado;
     }
 }
