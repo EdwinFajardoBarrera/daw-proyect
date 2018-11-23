@@ -131,6 +131,38 @@ class QueryConsults {
         $conexion->close();
         return $todasLasImagenes;
     }
+    
+    public function getImagesForUserInv($sessionUser){
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
+            WHERE PR.`name` = '". $sessionUser ."' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+        $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+        
+        $numImagen = 0;
+        while($columna = $resultado->fetch_assoc()) {  
+            
+            $todasLasImagenes[$numImagen] = 
+                '<div class="responsivePer">
+                    <div class="imagenLoca">
+                        <a target="_blank" href="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'">
+                            <img class="miFoto" src="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'" alt="Cinque Terre" width="100%" height="300">
+                        </a>
+                    </div>
+                </div>';
+                    
+            $numImagen++;
+            
+        }
+        $conexion->close();
+        return $todasLasImagenes;
+    }
 
     public function startConexion(){
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
