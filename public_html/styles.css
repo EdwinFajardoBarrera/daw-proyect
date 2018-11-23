@@ -288,6 +288,10 @@ div.desc {
     border: 2px double #000000;
 }
 
+#commentBox{
+    resize: none;
+}
+
 #comentar-btn{
     text-decoration: none;
     align-content: center;

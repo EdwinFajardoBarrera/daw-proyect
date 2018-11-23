@@ -115,7 +115,7 @@ class QueryConsults {
                          <div class="responsive">
                             <div class="gallery container">
                               <div class="image-header">
-                                <span style="float:left"><a href="#">Artista</a></span><span style="float:right"><a href="perfilVisitante.php">Seguir</a></span>
+                                <span style="float:left"><a href="#">Artista</a></span><span style="float:right"><a href="#">Seguir</a></span>
                               </div>
                                   <a target="_blank" href="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'">
                                 <img src="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'" alt="Cinque Terre" width="100%" height="400">

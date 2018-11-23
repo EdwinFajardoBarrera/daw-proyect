@@ -33,10 +33,6 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
             if (isset($_COOKIE['user'])) {
                 Setcookie ('user', "", 0);
             }
-            echo "<script>
-                     alert('No se recordará al usuario');
-                     window.location= Index.php;
-                        </script>";
             header("refresh:0; url=login.php");
         }
     } else {

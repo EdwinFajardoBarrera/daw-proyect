@@ -1,2 +1,1 @@
 <?php
-print("Recursos Python");

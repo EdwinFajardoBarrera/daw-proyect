@@ -38,20 +38,6 @@ function editInfo(){
     }
 }
 
-function añadirComentario() {
-    
-    var cajaComentario = document.getElementById('area-comentarios');
-    var nuevoComentario = document.getElementById('commentBox').value;
-    if(nuevoComentario != ""){
-        cajaComentario.innerHTML = "<p>" +nuevoComentario +"</p>";
-        document.getElementById('commentBox').value ="";
-    } else {
-        window.alert("El comentario no puede estar vacio");
-        window.location("comentarios.html");
-    }
-   
-}
-
 var slideIndex = 1;
 showSlides(slideIndex);
 

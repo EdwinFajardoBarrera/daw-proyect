@@ -2,13 +2,17 @@
     <?php
     if (!isset($_GET['user'])) {
         header('refresh:0; url=inicio.php');
-    } else {
-        $owner = $_GET['user'];
-    }
-    include 'Conexion/QueryConsults.php';
+    } 
+    include 'Conexion/QueryConsults.php';    
 
+    $owner = $_GET['user'];
     $ctrlConexion = new QueryConsults();
     $username = $ctrlConexion->getNombreUsuario($owner);
+    if($username == " "){
+        echo '<script>alert("El usuario no existe");</script>';
+        header('refresh:0; url=inicio.php');
+    }
+    
     $comentario = $ctrlConexion->getDescripcionUsuario($owner);
     $rate = $ctrlConexion->getRateUsuario($owner);
     $imagenes = $ctrlConexion->getImagesForUserInv($owner);
