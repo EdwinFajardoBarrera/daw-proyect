@@ -44,22 +44,22 @@ function validarRegistro() {
     }
 }
 
-function obtenerUsuario() {
-    var usuarioAcceso = document.getElementById("usuarioAcceso").value;
-    var contraseñaAcceso = document.getElementById("contraseñaAcceso").value;
+// function obtenerUsuario() {
+//     var usuarioAcceso = document.getElementById("usuarioAcceso").value;
+//     var contraseñaAcceso = document.getElementById("contraseñaAcceso").value;
 
-    if (usuarioAcceso == arrayUsuario[2]) {
-        if (contraseñaAcceso == arrayUsuario[4]) {
-            window.alert("Bienvenido " + arrayUsuario[0]);
-            // Sets the new location of the current window.
-            window.location = "perfilArtista.html";
+//     if (usuarioAcceso == arrayUsuario[2]) {
+//         if (contraseñaAcceso == arrayUsuario[4]) {
+//             window.alert("Bienvenido " + arrayUsuario[0]);
+//             // Sets the new location of the current window.
+//             window.location = "perfilArtista.html";
 
-        }
-        else {
-            window.alert("La contraseña es incorrecta.");
-        }
-    }
-    else {
-        window.alert("No existe ese usuario.");
-    }
-}
+//         }
+//         else {
+//             window.alert("La contraseña es incorrecta.");
+//         }
+//     }
+//     else {
+//         window.alert("No existe ese usuario.");
+//     }
+// }

@@ -22,15 +22,14 @@
     <script src="scripts.js"></script>
     <script src="Js/comentariosInicio.js"></script>
     <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
-    
-
-
-
 
 </head>
 
 <body>
-    <section class="menu cid-ra9b0gb1Mf" once="menu" id="menu1-1">
+    <?php
+        include 'header.html';
+    ?>
+    <!-- <section class="menu cid-ra9b0gb1Mf" once="menu" id="menu1-1">
         <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +67,7 @@
                         Log in</a></div>
             </div>
         </nav>
-    </section>
+    </section> -->
 
     <section class="engine"></section>
     <section class="carousel slide cid-ra9hqGKF9R" data-interval="false" id="slider1-4">

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (isset($_SESSION['Username'])) {
     header('Location: inicio.php');
@@ -15,9 +14,9 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
     $password = $_POST["password"];
 
     // establecer y realizar consulta. guardamos en variable.
-    $columna = $ctrlConexion->getUserAndPassword($user);
+    $column = $ctrlConexion->getUserAndPassword($user);
 
-    if ($user == $columna['name'] && password_verify($password, $columna['password'])) {
+    if ($user == $column['name'] && password_verify($password, $column['password'])) {
         $_SESSION['Username'] = $user;
         if ($_POST["recordar"] == 1) {
             if (isset($_COOKIE['user'])) {
@@ -37,7 +36,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
         }
     } else {
 
-        if ($user == $columna['name']) {
+        if ($user == $column['name']) {
             echo "<script>
                          alert('Contraseña incorrecta');
                          window.location= Index.php;

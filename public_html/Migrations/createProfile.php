@@ -3,7 +3,6 @@
 //Creas una variable de tipo objeto mysqli con los datos de la bd y el charset que quieras
 include 'config.php';
 global $host, $user, $password, $database, $root_url;
-
 $mysqli = new mysqli($host, $user, $password, $database);
 $mysqli->set_charset("utf8");
 
@@ -12,7 +11,6 @@ $name = $_POST["name"];
 $last_name = $_POST["last_name"];
 $username = $_POST["username"];
 $email = $_POST["email"];
-
 $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
 $crearPerfil = "INSERT INTO profile VALUES (NULL, '$username', 0, TRUE, now())";
@@ -42,13 +40,6 @@ if (!$crearPerfil) {
     }
 
 }
-
-
-
-
-
-
   }
-
 
 ?>
