@@ -47,8 +47,6 @@ function agregarComentario(usuario, imageID) {
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send('user=' + usuario + '&' + 'imageID=' + imageID + '&' + 'comment=' + nuevoComentario);
             document.getElementById('commentBox').value = "";
-            window.alert('El comentario se cargó exitosamente!');
-            chargeComments(idImage);
         }
         //--------------------------------------------------------------------------------------------------------
     } else {

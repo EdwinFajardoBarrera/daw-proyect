@@ -108,6 +108,7 @@ class QueryConsults {
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
         
         $numImagen = 0;
+        $todasLasImagenes = array();
         while($columna = $resultado->fetch_assoc()) {  
             
             $todasLasImagenes[$numImagen] = 
@@ -145,6 +146,7 @@ class QueryConsults {
             WHERE PR.`name` = '". $sessionUser ."' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
         
+        $todasLasImagenes = array();
         $numImagen = 0;
         while($columna = $resultado->fetch_assoc()) {  
             

@@ -71,7 +71,7 @@ and open the template in the editor.
                 </p>   
                 <div style="float: center; text-align: center">
                     <textarea id="commentBox" rows="4" cols="54" placeholder="Añadir comentario público"></textarea>
-                    <input type="button" id="comentar-btn" style="float: left;" value="Comentar" onclick="agregarComentario('<?=$username?>', getIdImage())">
+                    <input type="button" id="comentar-btn" style="float: left;" value="Comentar" onclick="agregarComentario('<?=$username?>', getIdImage());chargeComments(getIdImage())">
                 </div>
             </div>
         </main>

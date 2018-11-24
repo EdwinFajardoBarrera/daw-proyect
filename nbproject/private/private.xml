@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/daw-proyect/public_html/inicio.php</file>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/test.php</file>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/ajaxScripts.js</file>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Models/Comment.php</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/styles.css</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Js/comentariosInicio.js</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Controller/commentInicioController.php</file>
         </group>
     </open-files>
 </project-private>
