@@ -27,7 +27,7 @@
 
 <body>
     <?php
-        include 'header.html';
+        include 'header.php';
     ?>
     <!-- <section class="menu cid-ra9b0gb1Mf" once="menu" id="menu1-1">
         <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">

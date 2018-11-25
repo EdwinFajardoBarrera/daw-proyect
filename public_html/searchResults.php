@@ -34,16 +34,19 @@
     <title>Resultados de búsqueda</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="carouselIndex.js"></script>
-    <script src="scripts.js"></script>
-    <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <!-- <script src="carouselIndex.js"></script> -->
+    <!-- <script src="scripts.js"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="estilosInicio.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="styles.css" /> -->
 </head>
 
 <body>
     <main>
         <!-- HEADER -->
-        <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
+        <?php
+            include 'headerN.php';
+        ?>
+        <!-- <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe> -->
 
         <!-- Imágenes -->  
         <?php
@@ -57,7 +60,10 @@
         ?>
      
         <!-- FOOTER -->
-        <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe>
+        <?php
+            include 'footer.html';
+        ?>
+        <!-- <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe> -->
 
     </main>
 </body>

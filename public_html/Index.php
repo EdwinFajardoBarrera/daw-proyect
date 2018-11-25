@@ -31,7 +31,7 @@
         <main>
             <!-- HEADER -->     
             <?php
-                include 'headerN.html';
+                include 'headerN.php';
             ?>
             <!--REGISTER FORM-->
             <div class="registro" id="registroDiv">
