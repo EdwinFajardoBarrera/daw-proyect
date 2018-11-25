@@ -65,18 +65,6 @@
             include 'footer.html';
         ?>
 
-        <!-- <section once="" class="cid-ra9iqqZfZS" id="footer6-8">
-            <div class="container">
-                <div class="media-container-row align-center mbr-white">
-                    <div class="col-12">
-                        <p class="mbr-text mb-0 mbr-fonts-style display-7">
-                            © Copyright 2018 Web Got Tallent - All Rights Reserved
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
     <script src="assets/web/assets/jquery/jquery.min.js"></script>
     <script src="assets/popper/popper.min.js"></script>
     <script src="assets/tether/tether.min.js"></script>
