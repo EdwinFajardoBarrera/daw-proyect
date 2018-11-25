@@ -44,7 +44,10 @@ and open the template in the editor.
     <body onload="setNumMaxIdImage(<?= count($todasLasImagenes) ?>); setIdImage(0);">
         <main>
             <!-- HEADER -->
-            <iframe src="header.php" frameborder="0" width="100%" height="100"></iframe>
+            <?php
+                include 'headerN.php'
+            ?>
+            <!-- <iframe src="header.php" frameborder="0" width="100%" height="100"></iframe> -->
 
             <!-- contenedor carousel -->
             <div class="slideshow-container">

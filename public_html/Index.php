@@ -55,7 +55,7 @@
                     <p class="subtitle">Acceder</p>
                     <input type="text" id="usuarioAcceso" name="user" placeholder="Nombre de usuario" required>
                     <input type="password" id="contraseñaAcceso" name="password" placeholder="Contraseña"required>
-                    <input type="checkbox" id="recordarUsuarioChBox" name="recordar" value=1> Recordarme en este equipo
+                    <input type="checkbox" id="recordarUsuarioChBox" name="remember"> Recordarme en este equipo
                     <input type="submit" value="Acceder">
                 </form>
             </div>

@@ -16,15 +16,20 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
     // establecer y realizar consulta. guardamos en variable.
     $column = $ctrlConexion->getUserAndPassword($user);
 
+    /*
+    Si las credenciales de acceso son correctas se le redirecciona al inicio y este se establece como el
+    nuevo index
+    */
     if ($user == $column['name'] && password_verify($password, $column['password'])) {
         $_SESSION['Username'] = $user;
-        if ($_POST["recordar"] == 1) {
+
+        if (isset($_POST["remember"]) == true) {
             if (isset($_COOKIE['user'])) {
                 Setcookie ('user', $datos, 0);
             }
             setcookie("user", $user, time() + 60*60*24/*1 dia*/);
             echo "<script>
-                     alert('Se recordará al usuario: " . $_COOKIE['user'] . "');
+                     alert('Se recordará al usuario: " . $user . "');
                      window.location= Index.php;
                         </script>";
             header("refresh:0; url=login.php");
