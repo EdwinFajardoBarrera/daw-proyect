@@ -5,11 +5,15 @@ function chargeComments(idComment) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("area-comentarios").innerHTML = this.responseText;
+            document.getElementById("commentsCharged").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", "Controller/commentInicioController.php?id=" + idComment + "&p=" + Math.random(), true);
     xhttp.send();
+}
+
+function getFocus() {          
+  document.getElementById("commentTxtBox").focus();
 }
 
 function getIdImage() {
@@ -48,7 +52,6 @@ function agregarComentario(usuario, imageID) {
             xhttp.send('user=' + usuario + '&' + 'imageID=' + imageID + '&' + 'comment=' + nuevoComentario);
             document.getElementById('commentBox').value = "";
             window.alert('El comentario se cargó exitosamente!');
-            chargeComments(idImage);
         }
         //--------------------------------------------------------------------------------------------------------
     } else {
@@ -68,4 +71,15 @@ function isSessionInit(usuario) {
     } else {
         return true;
     }
+}
+
+function cambia_propiedades(){
+    document.getElementById("enlace").style.color = "#01DF01"
+}
+
+function detectarCambioResolucion(){
+    var w = window.outerWidth;
+    var h = window.outerHeight;
+    var txt = "Tamaño actual: ancho=" + w + ", alto=" + h;
+    document.getElementById("resizeResult").innerHTML = txt;
 }

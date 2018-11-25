@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $numImagen = 0;
     while ($columna = $resultado->fetch_assoc()) {
-        $comments[$numImagen] = '<a href="perfilVisitante.php?user=' . $columna['name'] . '">' . $columna['name'] . '</a>: ' . $columna['content'] . '<br/>';
+        $comments[$numImagen] = '<div class="col-sm-12" ><a href="perfilVisitante.php?user=' . $columna['name'] . '">' . $columna['name'] . '</a> ' . $columna['content'] . '</div>';
         $numImagen++;
     }
     mysqli_close($conexion);
