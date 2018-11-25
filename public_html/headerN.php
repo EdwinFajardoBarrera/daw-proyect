@@ -74,22 +74,16 @@
                     <a class="btn btn-sm btn-success-outline display-7" href="contacto.php">
                         <span class="mbri-touch mbr-iconfont mbr-iconfont-btn"><br></span>
                     </a>
-                    <?php
-                        // session_start();
-                        if (!isset($_SESSION['Username'])) {
-                            echo 
-                            "<a class='btn btn-sm btn-primary display-7' href='index.php'>
-                            <span class='mbri-login mbr-iconfont mbr-iconfont-btn'></span>
-                            Log in
-                            </a>";
-                        } else {
-                            echo 
-                            "<a class='btn btn-sm btn-danger display-7' href='index.php'>
-                            <span class='mbri-login mbr-iconfont mbr-iconfont-btn'></span>
-                            Log out
-                            </a>";
-                        }
-                    ?>
+                        <?php
+                            // session_start();
+                            if (isset($_SESSION['Username'])) {
+                                echo '<a class="btn btn-sm btn-primary display-7" href="index.php">
+                                <span class="mbri-login mbr-iconfont mbr-iconfont-btn"></span>
+                                Log in
+                                </a>';
+                                // echo '<a href="logout.php" title="Cerrar sesi&oacute;n">Salir</a>';
+                            }
+                        ?> 
                 </div>
             </div>
         </nav>
