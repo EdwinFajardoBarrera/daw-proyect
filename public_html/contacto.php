@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <?php
+        session_start();
+    ?>
 
 <head>
     <meta charset="UTF-8">
@@ -25,7 +28,6 @@
     ?>
     <section class="cid-rabPyjdVIV mbr-parallax-background" id="footer2-b">
         <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(60, 60, 60);"></div>
-
         <div class="container">
             <div class="media-container-row content mbr-white">
                 <div class="col-12 col-md-3 mbr-fonts-style display-7">
