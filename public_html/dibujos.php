@@ -61,7 +61,7 @@
             <div class="media-container-row">
                 <div class="title col-12 col-md-8">
                     <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Dibujos&nbsp;</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">una
+                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">
                         Colección aleatoria de los trabajos de nuestros artistas
                     </h3>
                 </div>
