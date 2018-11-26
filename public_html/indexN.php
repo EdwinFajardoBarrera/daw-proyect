@@ -22,13 +22,11 @@
     <script src="scripts.js"></script>
     <script src="Js/comentariosInicio.js"></script>
     <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
+    <link rel="stylesheet" type="text/css" href="css/imagenes.css" />
 
 </head>
 
 <body>
-    <?php
-        include 'header.php';
-    ?>
     <section class="engine"></section>
     <section class="carousel slide cid-ra9hqGKF9R" data-interval="false" id="slider1-4">
 
@@ -45,41 +43,14 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-color: aliceblue">
-                        <div class="container container-slide">
+                        <div class="container container-slide" style="background-color: darkslateblue;">
                             <div class="image_wrapper">
                                 
                                 <div class="carousel-caption justify-content-center">
                                     <div class="col-10 align-center">
                                         <h2 class="mbr-fonts-style display-1">Disfruta contenido random</h2>
-                                        <!-- contenedor carousel -->
-                                        <div class="slideshow-container">
-
-                                            <!-- imágenes -->
-                                            <div class="mySlides fade" style="display: block;">
-                                                <img src="DB/designs/design3.jpg" width="100%" height="500">
-                                            </div>
-                                            <!-- genera imágenes de forma dinámica -->
-                                            <?php
-                                            for ($cont = 0; $cont < $numImagen; $cont++) {
-                                            echo $todasLasImagenes[$cont];
-                                            }
-                                            ?>
-                                            <!-- botones siguiente y anterior -->
-                                            <a class="prev" onclick="plusSlides(-1); setIdImage(getIdImage() - 1); chargeComments(getIdImage())">&#10094;</a>
-                                            <a class="next" onclick="plusSlides(1); setIdImage(getIdImage() + 1); chargeComments(getIdImage())">&#10095;</a>
-                                        </div>
-
-                                        <div id="comment-div">
-                                            <p id="tex-tittle">Comentarios</p>
-                                            <p id="area-comentarios">
-                                                <!--comentarios se cargan aquí------------------------------------------------------------------------------>
-                                            </p>
-                                            <div style="float: center; text-align: center">
-                                                <textarea id="commentBox" rows="4" cols="54" placeholder="Añadir comentario público"></textarea>
-                                                <input type="button" id="comentar-btn" style="float: left;" value="Comentar"
-                                                    onclick="agregarComentario('<?=$username?>', getIdImage())">
-                                            </div>
-                                        </div>
+                                        <a class="btn btn-primary display-4" id="btnRandom" style="background-image: url(icons/randomIcon.png)"
+                                                href="Disenografico.php">Explorar diseños</a>
                                     </div>
                                 </div>
                             </div>
