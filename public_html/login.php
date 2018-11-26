@@ -21,7 +21,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
     Si las credenciales de acceso son correctas se le redirecciona al inicio y este se establece como el
     nuevo index
     */
-    if ($user == $column['name'] && password_verify($password, $column['password']) && $ctrlConexion->getUserStatus($user) != 0  ) {
+    if ($user == $column['name'] && password_verify($password, $column['password'])) {
         $_SESSION['Username'] = $user;
         $_SESSION['count'] = 0;
         if (isset($_POST["remember"]) == true) {
@@ -43,7 +43,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && $_POST["form"] == "login") {
     } else {
 
         //Se verifica si el usuario esta baneado
-        if ($ctrlConexion->getUserStatus($user) == 0) {
+        if ($user == $column['name'] && $ctrlConexion->getUserStatus($user) == 0) {
             echo "<script>
             alert('La cuenta: $user se encuentra bloqueada');
             window.location= index.php;
