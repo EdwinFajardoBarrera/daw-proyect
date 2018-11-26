@@ -57,7 +57,7 @@
                                             mundo para que tú y todos podamos compartir y disfrutar del arte 3D, dibujo
                                             y el diseño gráfico</p>
                                             <div class="mbr-section-btn" buttons="0"><a class="btn btn-primary display-4"
-                                                href="Disenografico.php">Explorar diseños</a> </div>
+                                                href="random.php">Explorar diseños</a> </div>
                                     </div>
                                 </div>
                             </div>
