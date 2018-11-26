@@ -69,6 +69,11 @@
                             <span class="mobi-mbri mobi-mbri-delivery mbr-iconfont mbr-iconfont-btn" style="font-size: 25px;"></span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-white display-4" href="profile.php">
+                            <span class="mobi-mbri mobi-mbri-user mbr-iconfont" style="font-size: 25px;"></span>
+                        </a>
+                    </li>
                 </ul>
                 <div class="navbar-buttons mbr-section-btn">
                     <a class="btn btn-sm btn-success-outline display-7" href="contacto.php">

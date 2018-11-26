@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['count'];
+// $_SESSION['count'];
 if (isset($_SESSION['Username'])) {
     header('Location: inicio.php');
 }
