@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <?php
+        session_start();
+        if (!isset($_SESSION['Username'])) {
+            echo "<script>
+                alert('No existe una sesión activa');
+                window.location= 'Index.php'
+                </script>;";
+        }
+    ?>
 
 <head>
     <meta charset="UTF-8">
@@ -146,7 +155,6 @@
     <?php
         include 'footer.html';
     ?>
-
 
     <script src="assets/web/assets/jquery/jquery.min.js"></script>
     <script src="assets/tether/tether.min.js"></script>
