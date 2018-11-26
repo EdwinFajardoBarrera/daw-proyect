@@ -61,9 +61,6 @@ $postImagenes = $ctrlConexion->getImagesByUser2($_SESSION['Username']);
             </div>
             <div class="container">
                 <div class="media-container-column">
-
-
-
                     <div class="mbr-testimonial align-center col-12 col-md-10">
                         <div class="panel-item">
                             <div class="card-block">
@@ -81,16 +78,24 @@ $postImagenes = $ctrlConexion->getImagesByUser2($_SESSION['Username']);
                                 <div class="mbr-author-name mbr-bold mbr-fonts-style mbr-white display-7">Puntuaci&oacute;n de usuario: <?= $rate ?>%</div>
                             </div>
                             
-                            <div class="card-footer">                                                   <br>
+                            <div class="card-footer"> 
+                                                                             
+                              <br>
                                 <form enctype="multipart/form-data" method="POST">
-                                    <center>
+                                
+                                    <div class="container align-left col-12"> 
+                                        <small class="mbr-author-desc mbr-italic mbr-light mbr-fonts-style mbr-white display-7">
+                                        Elije el archivo que deseas compartir y su categoría</small>
+                                        <input type="submit" value="Subir archivo"/> 
                                         <input name="archivoAsubir" type="file" multiple accept="image/jpeg, image/gif, image/png"><br />
                                         <input type="radio" name="tipoImagen" value="draws"> Dibujo<br>
                                         <input type="radio" name="tipoImagen" value="designs"> Diseño grafico<br>
                                         <input type="radio" name="tipoImagen" value="3Ddesigns"> Diseño 3D<br>
-                                        <input type="submit" value="Subir archivo" />
-                                    </center>
-                                </form>                                     
+                                        
+                                        
+                                    </div>
+                                </form> 
+                                                                    
                                 <?php
                                     if($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         $tipoImagen = isset($_POST['tipoImagen']) ? $_POST['tipoImagen'] : null;
