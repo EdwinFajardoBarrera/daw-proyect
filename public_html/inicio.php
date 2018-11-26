@@ -35,7 +35,7 @@
     <section class="engine"></section>
     <section class="carousel slide cid-ra9hqGKF9R" data-interval="false" id="slider1-4">        <div class="full-screen">
             <div class="mbr-slider slide carousel" data-pause="true" data-keyboard="false" data-ride="carousel"
-                data-interval="50000000">
+                data-interval="5000">
                 <ol class="carousel-indicators">
                     <li data-app-prevent-settings="" data-target="#slider1-4" class="active" data-slide-to="0"></li>
                     <li data-app-prevent-settings="" data-target="#slider1-4" data-slide-to="1"></li>
