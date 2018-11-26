@@ -185,7 +185,7 @@ $postImagenes = $ctrlConexion->getImagesByUser2($_SESSION['Username']);
             </div>
 
             <!-- Gallery -->
-            <div class="mbr-gallery-row">
+            <div class="mbr-gallery-row" style="background-color: #465362;">
                 <div class="mbr-gallery-layout-default">
                     <div>
                         <div>
