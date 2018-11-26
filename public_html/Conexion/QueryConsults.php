@@ -3,7 +3,7 @@
 class QueryConsults {
 
     private $user = "root";
-    private $password = "";
+    private $password = "fireemblem1";
     private $host = "localhost";
     private $database = "wgt-db";
 
@@ -93,8 +93,8 @@ class QueryConsults {
 
         return $total;
     }
-    
-    public function getImagesByUser($sessionUser){
+
+    public function getImagesByUser($sessionUser) {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
 
         /* comprueba la conexión */
@@ -104,35 +104,23 @@ class QueryConsults {
         }
 
         $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
-            WHERE PR.`name` = '". $sessionUser ."' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+            WHERE PR.`name` = '" . $sessionUser . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-        
+
         $numImagen = 0;
-        while($columna = $resultado->fetch_assoc()) {  
-            
-            $todasLasImagenes[$numImagen] = 
-                        '
-                         <div class="responsive">
-                            <div class="gallery container">
-                              <div class="image-header">
-                                <span style="float:left"><a href="#">Artista</a></span><span style="float:right"><a href="#">Seguir</a></span>
-                              </div>
-                                  <a target="_blank" href="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'">
-                                <img src="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'" alt="Cinque Terre" width="100%" height="400">
-                              </a>
-                              <div class="desc">Descripcion</div>
-                            </div>
-                          </div> 
-                        ';
-                    
+        while ($columna = $resultado->fetch_assoc()) {
+            $todasLasImagenes[$numImagen] = '
+                        <div class="mbr-gallery-item mbr-gallery-item--p0" data-video-url="false" data-tags="Awesome">
+                            <div href="#lb-gallery3-y" data-slide-to="' . ($numImagen) . '" data-toggle="modal"><img src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '"
+                                alt="" title=""><span class="icon-focus"></span></div>
+                        </div>';
             $numImagen++;
-            
         }
         $conexion->close();
         return $todasLasImagenes;
     }
-    
-    public function getImagesForUserInv($sessionUser){
+
+    public function getImagesByUser2($sessionUser) {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
 
         /* comprueba la conexión */
@@ -142,29 +130,52 @@ class QueryConsults {
         }
 
         $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
-            WHERE PR.`name` = '". $sessionUser ."' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+            WHERE PR.`name` = '" . $sessionUser . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-        
         $numImagen = 0;
-        while($columna = $resultado->fetch_assoc()) {  
+        while ($columna = $resultado->fetch_assoc()) {
+            if ($numImagen == 0) {
+                $todasLasImagenes[$numImagen] = '<div class="carousel-item"><img src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" alt="" title="' . $columna["imageName"] . '"></div>';
+            } 
+            $todasLasImagenes[$numImagen] = '<div class="carousel-item"><img src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" alt="" title="' . $columna["imageName"] . '"></div>';
             
-            $todasLasImagenes[$numImagen] = 
-                '<div class="responsivePer">
+            $numImagen++;
+        }
+        
+        return $todasLasImagenes;
+    }
+
+    public function getImagesForUserInv($sessionUser) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
+            WHERE PR.`name` = '" . $sessionUser . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+        $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+
+        $numImagen = 0;
+        while ($columna = $resultado->fetch_assoc()) {
+
+            $todasLasImagenes[$numImagen] = '<div class="responsivePer">
                     <div class="imagenLoca">
-                        <a target="_blank" href="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'">
-                            <img class="miFoto" src="DB/'.$columna["imageType"].'/' . $columna["imageName"] . $columna["imageExtension"] .'" alt="Cinque Terre" width="100%" height="300">
+                        <a target="_blank" href="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '">
+                            <img class="miFoto" src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" alt="Cinque Terre" width="100%" height="300">
                         </a>
                     </div>
                 </div>';
-                    
+
             $numImagen++;
-            
         }
         $conexion->close();
         return $todasLasImagenes;
     }
 
-    public function startConexion(){
+    public function startConexion() {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
         /* comprueba la conexión */
         if (mysqli_connect_errno()) {
