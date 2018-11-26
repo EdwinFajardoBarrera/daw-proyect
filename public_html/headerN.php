@@ -73,7 +73,7 @@
                     <?php
                         if (isset($_SESSION['Username'])) {
                             echo '<li class="nav-item">
-                            <a class="nav-link link text-white display-4" href="profile.php">
+                            <a class="nav-link link text-white display-4" href="perfil.php">
                             <span class="mobi-mbri mobi-mbri-user mbr-iconfont" style="font-size: 25px;"></span>
                             </li>
                         </a>';

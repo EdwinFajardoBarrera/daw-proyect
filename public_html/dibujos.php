@@ -1,6 +1,7 @@
  <?php
-        require './Conexion/QueryConsults.php';
+    session_start();
     
+        require './Conexion/QueryConsults.php';    
         $ctrlConexion = new QueryConsults();
         $conexion = $ctrlConexion->startConexion();
         $consulta = "SELECT * FROM images WHERE imageType='draws'";
