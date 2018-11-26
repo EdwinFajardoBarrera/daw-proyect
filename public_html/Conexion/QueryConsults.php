@@ -286,8 +286,6 @@ class QueryConsults {
 
                 if (!$ejecutarDatos) {
                 echo "No se pudieron instertar los datos en la tabla";
-                } else {
-                header("Location: ../index.php");
                 }
             }
         }
@@ -301,11 +299,11 @@ class QueryConsults {
             exit();
         }
 
-        $query = "SELECT * FROM profile WHERE name";
+        $query = "SELECT * FROM profile WHERE name = '$username'";
         $resultado = $conexion->query($query);
         $conexion->close();
 
-        if (mysqli_num_rows($resultado) != 0) {
+        if (mysqli_num_rows($resultado) == 0) {
             return true;
         } else {
             return false;
