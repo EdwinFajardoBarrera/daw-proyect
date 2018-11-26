@@ -40,24 +40,11 @@
                     <li data-app-prevent-settings="" data-target="#slider1-4" class="active" data-slide-to="0"></li>
                     <li data-app-prevent-settings="" data-target="#slider1-4" data-slide-to="1"></li>
                     <li data-app-prevent-settings="" data-target="#slider1-4" data-slide-to="2"></li>
-                    <li data-app-prevent-settings="" data-target="#slider1-4" data-slide-to="3"></li>
+                    
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-color: aliceblue">
-                        <div class="container container-slide" style="background-color: darkslateblue;">
-                            <div class="image_wrapper">
-                                
-                                <div class="carousel-caption justify-content-center">
-                                    <div class="col-10 align-center">
-                                        <h2 class="mbr-fonts-style display-1">Disfruta contenido random</h2>
-                                        <a class="btn btn-primary display-4" id="btnRandom" style="background-image: url(icons/randomIcon.png)"
-                                                href="Disenografico.php">Explorar diseños</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item slider-fullscreen-image" data-bg-video-slide="false" style="background-image: url(assets/images/mbr-1271x1920.jpg);">
+                   
+                    <div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/mbr-1271x1920.jpg);">
                         <div class="container container-slide">
                             <div class="image_wrapper">
                                 <div class="mbr-overlay"></div><img src="assets/images/mbr-1271x1920.jpg">
@@ -67,6 +54,8 @@
                                         <p class="lead mbr-text mbr-fonts-style display-5">Conectamos el talento del
                                             mundo para que tú y todos podamos compartir y disfrutar del arte 3D, dibujo
                                             y el diseño gráfico</p>
+                                            <div class="mbr-section-btn" buttons="0"><a class="btn btn-primary display-4"
+                                                href="random.php">Explorar diseños</a> </div>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +71,7 @@
                                         <p class="lead mbr-text mbr-fonts-style display-5">inspirate con los diseños de
                                             nuestros usuarios y luego compártenos tu talento</p>
                                         <div class="mbr-section-btn" buttons="0"><a class="btn btn-primary display-4"
-                                                href="https://mobirise.com">Explorar diseños</a> </div>
+                                                href="Disenografico.php">Explorar diseños</a> </div>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +86,7 @@
                                         <h2 class="mbr-fonts-style display-1">¿Tu talento es dibujar?</h2>
                                         <p class="lead mbr-text mbr-fonts-style display-5">mira lo que el mundo está
                                             haciendo</p>
-                                        <div class="mbr-section-btn" buttons="0"><a class="btn btn-info display-4" href="https://mobirise.com">Explorar
+                                        <div class="mbr-section-btn" buttons="0"><a class="btn btn-info display-4" href="dibujos.php">Explorar
                                                 Dibujos</a> </div>
                                     </div>
                                 </div>
@@ -115,7 +104,7 @@
     </section>
 
     <?php
-        include 'footer.php';
+        include 'footer.html';
     ?>
 
     <script src="assets/web/assets/jquery/jquery.min.js"></script>

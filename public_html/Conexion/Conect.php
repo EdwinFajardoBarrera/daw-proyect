@@ -13,7 +13,7 @@
  */
 class Conect {
     private $user = "root";
-    private $password = "";
+    private $password = "root";
     private $host = "localhost";
     private $database = "wgt-db";
     
