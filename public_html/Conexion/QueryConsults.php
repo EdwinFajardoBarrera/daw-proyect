@@ -173,4 +173,74 @@ class QueryConsults {
         }
         return $conexion;
     }
+
+    public function banUser($user) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "UPDATE profile SET status = 0 WHERE name= '$user'";
+        $resultado = $conexion->query($query);
+        $conexion->close();
+
+    }
+
+    public function unBanUser($user) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+        $query = "UPDATE profile SET status = 1 WHERE name= '$user'";
+        $resultado = $conexion->query($query);
+        $conexion->close();
+
+    }
+
+
+    public function getUserStatus($user) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $query = "SELECT status FROM profile WHERE name = '$user'";
+        $resultado = $conexion->query($query);
+
+        while($columna = $resultado->fetch_assoc()) {
+            $status = $columna['status'];
+        }
+        
+        $conexion->close();
+
+        return $status;
+    }
+
+    public function validateUserData($username, $email, $contra) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+        /* comprueba la conexión */
+        $validation = false;
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $query = "SELECT profile.name, profiledata.email, profiledata.password FROM profile, profiledata WHERE profile.name";
+        $resultado = $conexion->query($query);
+
+        while($columna = $resultado->fetch_assoc()) {
+            if($username == $columna['name'] && $email == $columna['email'] && password_verify($contra, $columna['password'])) {
+                $validation = true;
+            }
+        }
+
+        return $validation;
+    }
 }

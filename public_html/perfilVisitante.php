@@ -1,22 +1,4 @@
 <!DOCTYPE <!DOCTYPE html>
-    <?php
-    if (!isset($_GET['user'])) {
-        header('refresh:0; url=inicio.php');
-    } 
-    include 'Conexion/QueryConsults.php';    
-
-    $owner = $_GET['user'];
-    $ctrlConexion = new QueryConsults();
-    $username = $ctrlConexion->getNombreUsuario($owner);
-    if($username == " "){
-        echo '<script>alert("El usuario no existe");</script>';
-        header('refresh:0; url=inicio.php');
-    }
-    
-    $comentario = $ctrlConexion->getDescripcionUsuario($owner);
-    $rate = $ctrlConexion->getRateUsuario($owner);
-    $imagenes = $ctrlConexion->getImagesForUserInv($owner);
-    ?>
     <html>
         <head>
             <meta charset="utf-8" />

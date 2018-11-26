@@ -1,6 +1,7 @@
 <html lang="es">
     <?php
     session_start();
+    // $_SESSION['count'];
     if (isset($_SESSION['Username'])) {
         header('Location: inicio.php');
     }
@@ -60,7 +61,6 @@
                 </form>
             </div>
         </main>
-
         <?php
             include 'footer.html';
         ?>
