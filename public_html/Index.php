@@ -42,7 +42,7 @@
                     <input type="name" id="nombre" name="name" placeholder="Nombre" required>
                     <input type="name" id="apellido" name="last_name" placeholder="Apellido" required>
                     <input type="text" id="usuarioRegistro" name="username" placeholder="Nombre de usuario" required>
-                    <input type="text" id="correo" name="email" placeholder="Correo electrónico" required>
+                    <input type="email" id="correo" name="email" placeholder="Correo electrónico" required>
                     <input type="password" id="contraseñaRegistro" name="password" placeholder="Contraseña" required>
                     <input type="password" id="confirmacionContraseñaRegistro" name="passwordConfirm" placeholder="Confirmar contraseña" required>
                     <div class="g-recaptcha" data-sitekey="6LdJRXcUAAAAAJp03Cr-TYpBxbYQESnKAOg5Em3o"></div>  

@@ -1,7 +1,35 @@
-<!DOCTYPE html>
 <?php
     session_start();
-?>
+    
+        require './Conexion/QueryConsults.php';    
+        $ctrlConexion = new QueryConsults();
+        $conexion = $ctrlConexion->startConexion();
+        $consulta = "SELECT * FROM images WHERE imageType='designs'";
+        $resultado = $conexion->query($consulta);
+        $conexion->close();
+     
+        $numImagen = 0;
+        while($columna = $resultado->fetch_assoc()) {  
+            
+            $todasLasImagenes[$numImagen] = 
+                        '
+                         <div class="mbr-gallery-item mbr-gallery-item--p4" data-video-url="false" data-tags="Awesome">
+                                    <div href="#lb-gallery1-h" data-slide-to="$i" data-toggle="modal"><img src="DB/designs/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="400" height="350"><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7"><a
+                                                href="http://www.google.com">Perfil de Artista</a> &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.google.com">Seguir</a></span>
+                                    </div>
+                         </div>
+                         
+                        ';
+         
+            $carrousel[$numImagen] =
+                    '<div class="carousel-item"><img src="DB/designs/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="500" height="500"></div>';
+            
+            $numImagen++;
+        }
+    ?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -39,39 +67,39 @@
             </div>
         </div>
     </section>
-
-    <section class="mbr-gallery mbr-slider-carousel cid-racubo7Yp8" id="gallery1-o">
+    <section class="mbr-gallery mbr-slider-carousel cid-racgjri4yx" id="gallery1-h">
         <div class="container">
-            <div>               
+            <div>
                 <!-- Gallery -->
                 <div class="mbr-gallery-row">
                     <div class="mbr-gallery-layout-default">
                         <div>
-                            <div>
-                                <div class="mbr-gallery-item mbr-gallery-item--p4" data-video-url="false" data-tags="Awesome">
-                                    <div href="#lb-gallery1-o" data-slide-to="0" data-toggle="modal"><img src="assets/images/gallery00.jpg"
-                                            alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Perfil
-                                            de Artista &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Seguir</span></div>
-                                </div>
+                            <div>      
+                                <?php
+                                    for($cont = 0; $cont < $numImagen; $cont++) {
+                                       echo $todasLasImagenes[$cont];
+                                    }
+                                ?>       
                             </div>
-                        </div>
                         <div class="clearfix"></div>
                     </div>
                 </div><!-- Lightbox -->
                 <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1"
-                    data-keyboard="true" data-interval="false" id="lb-gallery1-o">
+                    data-keyboard="true" data-interval="false" id="lb-gallery1-h">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item"><img src="assets/images/gallery00.jpg" alt="" title=""></div>
-                                    <div class="carousel-item active"><img src="assets/images/gallery00.jpg" alt=""
-                                            title=""></div>
+                                    <?php
+                                        for($cont = 0; $cont < $numImagen; $cont++) {
+                                           echo $carrousel[$cont];
+                                        }
+                                    ?>  
+                                    <div class="carousel-item active"><img src="assets/images/gallery00.jpg" alt="" title=""></div>
                                 </div><a class="carousel-control carousel-control-prev" role="button" data-slide="prev"
-                                    href="#lb-gallery1-o"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span
+                                    href="#lb-gallery1-h"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span
                                         class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next"
-                                    role="button" data-slide="next" href="#lb-gallery1-o"><span class="mbri-right mbr-iconfont"
+                                    role="button" data-slide="next" href="#lb-gallery1-h"><span class="mbri-right mbr-iconfont"
                                         aria-hidden="true"></span><span class="sr-only">Next</span></a><a class="close"
                                     href="#" role="button" data-dismiss="modal"><span class="sr-only">Close</span></a>
                             </div>
@@ -80,7 +108,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 
     <?php

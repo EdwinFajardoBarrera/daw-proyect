@@ -1,5 +1,6 @@
 <!doctype <!DOCTYPE html>
 <?php
+    // session_start();
     if(isset($_POST['search'])) {
         $buscar = $_POST['search'];
         $buscar = trim($buscar);
@@ -46,7 +47,7 @@
             </button>
             <div class="menu-logo">
                 <div class="navbar-brand">
-                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="indexN.php">W.G.T</a></span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="inicio.php">W.G.T</a></span>
                         <form action="" method="post" autocomplete="off" id="form-search">
                             <input id="searchBox" type="text" name="search" placeholder="Buscar en W.G.T">
                         </form>

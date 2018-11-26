@@ -255,4 +255,61 @@ class QueryConsults {
 
         return $validation;
     }
+
+    public function createProfile($name, $lastName, $username, $email, $password) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $crearPerfil = "INSERT INTO profile VALUES (NULL, '$username', 0, TRUE, now())";
+
+        if (!$crearPerfil) {
+        echo "No se pudieron seleccionar los datos";
+        } else {
+
+            $ejecutarPerfil = $conexion->query("$crearPerfil");
+
+            if (!$ejecutarPerfil) {
+                echo "No se pudieron instertar los datos en la tabla";
+            } else {
+
+                $query = $conexion->query("SELECT id FROM profile ORDER BY id DESC LIMIT 1");
+                $resultado = mysqli_fetch_array ($query);
+                $profile_id = $resultado['id'];
+
+                $crearDatosPerfil = "INSERT INTO profileData VALUES (NULL, '$name', '$lastName', '$email', '$password', 'Bienvenido, edite su descripcion', '$profile_id', now())";
+
+                $ejecutarDatos = $conexion->query("$crearDatosPerfil");
+
+                if (!$ejecutarDatos) {
+                echo "No se pudieron instertar los datos en la tabla";
+                } else {
+                header("Location: ../index.php");
+                }
+            }
+        }
+    }
+
+    public function usernameIsAviable($username) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $query = "SELECT * FROM profile WHERE name";
+        $resultado = $conexion->query($query);
+        $conexion->close();
+
+        if (mysqli_num_rows($resultado) != 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }
