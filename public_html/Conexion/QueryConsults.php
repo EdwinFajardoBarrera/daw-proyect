@@ -217,6 +217,7 @@ class QueryConsults {
     public function getUserStatus($user) {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
         /* comprueba la conexión */
+        $status;
         if (mysqli_connect_errno()) {
             printf("Conexion fallida: %s\n", mysqli_connect_error());
             exit();
