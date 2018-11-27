@@ -41,14 +41,9 @@ and open the template in the editor.
     </head>
 
     <body>
-    <?php
-        include 'headerN.php';
-    ?>
     <div>
         <main>
-           
-            <br><br><br>
-            <br><br><br>
+            <iframe src="headerN.php" frameborder="0" width="100%" height="85"></iframe>
             <!-- contenedor carousel -->
             <div class="slideshow-container">
 
@@ -68,13 +63,11 @@ and open the template in the editor.
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
+
         </main>
 
     </div>
-
-        <?php
-        include 'footer.html';
-    ?>
+        
     </body>
 
 </html>
