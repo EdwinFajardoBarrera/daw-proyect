@@ -1,9 +1,11 @@
 <?php
 /*Datos de conexion a base de datos*/
-$user = "root";
-$password = "";
-$host = "localhost";
-$database = "wgt-db";
+require'../Conexion/QueryConsults.php';
+$instancia = new QueryConsults();
+$user = $instancia->getUser();
+$password = $instancia->getPassword();
+$host = $instancia->getHost();
+$database = $instancia->getDB();
 
 /*respuesta de lista de comentarios por id*/
 if ($_SERVER["REQUEST_METHOD"] == "GET") {

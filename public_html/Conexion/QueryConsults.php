@@ -3,7 +3,7 @@
 class QueryConsults {
 
     private $user = "root";
-    private $password = "";
+    private $password = "fireemblem1";
     private $host = "localhost";
     private $database = "wgt-db";
 
@@ -313,6 +313,19 @@ class QueryConsults {
             return false;
         }
 
+    }
+    
+    public function getUser(){
+        return $this->user;
+    }
+    public function getPassword(){
+        return $this->password;
+    }
+    public function getHost(){
+        return $this->host;
+    }
+    public function getDB(){
+        return $this->database;
     }
 
 }

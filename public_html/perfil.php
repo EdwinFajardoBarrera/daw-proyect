@@ -14,28 +14,6 @@ $username = $ctrlConexion->getNombreUsuario($_SESSION['Username']);
 $comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username']);
 $rate = $ctrlConexion->getRateUsuario($_SESSION['Username']);
 $cadenaGenerada = $ctrlConexion->getImagesByUser($_SESSION['Username']);
-/* Generacion de imagenes */
-// $user = "root";
-// $password = "";
-// $host = "localhost";
-// $database = "wgt-db";
-// $conexion = new mysqli($host, $user, $password, $database);
-// $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType`, I.`id` FROM images I, profile PR, posts PO
-//             WHERE PR.`name` = '" . $_SESSION['Username'] . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
-// $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-
-// $numImagen = 0;
-// while ($columna = $resultado->fetch_assoc()) {
-//     $cadenaGenerada[$numImagen] = '
-            
-//             <div class="card">
-//                     <a data-toggle="modal" data-target="#modal">
-//                         <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top" onclick="obtenerElemento(this.src); chargeComments(' . $columna["id"] . '); setActiveImage(' . $columna["id"] . ');">
-//                     </a>
-//             </div>';
-//     $numImagen++;
-// }
-// $conexion->close();
 ?>
 
 <!DOCTYPE HTML>
