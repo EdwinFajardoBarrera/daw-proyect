@@ -83,3 +83,8 @@ function detectarCambioResolucion(){
     var txt = "Tamaño actual: ancho=" + w + ", alto=" + h;
     document.getElementById("resizeResult").innerHTML = txt;
 }
+
+function obtenerElemento(elemento) {
+    var cadena = '<img src="' + elemento + '" class="img-fluid rounded">';
+    document.getElementById('rolloGaleria').innerHTML = cadena;
+}
