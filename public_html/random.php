@@ -26,7 +26,6 @@ and open the template in the editor.
     while($columna = $resultado->fetch_assoc()) {  
         $todasLasImagenes[$numImagen] = '<div class="mySlides fade">
                                             <img src="DB/'. $columna["imageType"] . '/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" width="100%" height="500">
-                                           <iframe class="area-comentarios" src="comentarios.php" frameborder="0" width="100%" height="90"></iframe>
                                          </div>';
         $numImagen++;
     }
@@ -37,25 +36,20 @@ and open the template in the editor.
         <title>Inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="scripts.js"></script>
+        <script src="js/carrousel.js"></script>
         <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
     </head>
 
     <body>
-    <?php
-        include 'headerN.php';
-    ?>
     <div>
         <main>
-           
-
+            <iframe src="headerN.php" frameborder="0" width="100%" height="85"></iframe>
             <!-- contenedor carousel -->
             <div class="slideshow-container">
 
                 <!-- imágenes -->
                 <div class="mySlides fade" style="display: block;">
                     <img src="DB/designs/design3.jpg" width="100%" height="500">
-                    <iframe class="area-comentarios" src="comentarios.php" frameborder="0" width="100%" height="90" ></iframe>
                 </div>
 
                 <!-- genera imágenes de forma dinámica -->
@@ -69,13 +63,11 @@ and open the template in the editor.
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
+
         </main>
 
     </div>
-
-        <?php
-        include 'footer.html';
-    ?>
+        
     </body>
 
 </html>
