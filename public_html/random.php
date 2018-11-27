@@ -53,7 +53,7 @@ and open the template in the editor.
             <div class="slideshow-container">
 
                 <!-- imágenes -->
-                <div class="mySlides fade" style="display: block;">
+                <div class="mySlides" style="display: block;">
                     <img src="DB/designs/design3.jpg" width="100%" height="500">
                 </div>
 
