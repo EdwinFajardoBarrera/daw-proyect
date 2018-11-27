@@ -17,14 +17,19 @@
                                     <div href="#lb-gallery1-h" data-slide-to="$i" data-toggle="modal"><img src="DB/designs/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="400" height="350"><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7"><a
                                                 href="http://www.google.com">Perfil de Artista</a> &nbsp; &nbsp; &nbsp;
                                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.google.com">Seguir</a></span>
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href=""></a></span>
                                     </div>
                          </div>
                          
                         ';
          
-            $carrousel[$numImagen] =
-                    '<div class="carousel-item"><img src="DB/designs/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="500" height="500"></div>';
+            if ($numImagen == 0) {
+                $carrousel[$numImagen] =
+                        '<div class="carousel-item active"><img src="DB/designs/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="500" height="500"></div>';
+            } else {
+                $carrousel[$numImagen] =
+                        '<div class="carousel-item"><img src="DB/designs/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="500" height="500"></div>';
+            }
             
             $numImagen++;
         }
@@ -95,7 +100,6 @@
                                            echo $carrousel[$cont];
                                         }
                                     ?>  
-                                    <div class="carousel-item active"><img src="assets/images/gallery00.jpg" alt="" title=""></div>
                                 </div><a class="carousel-control carousel-control-prev" role="button" data-slide="prev"
                                     href="#lb-gallery1-h"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span
                                         class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next"
