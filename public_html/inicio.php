@@ -35,7 +35,7 @@
     <section class="engine"></section>
     <section class="carousel slide cid-ra9hqGKF9R" data-interval="false" id="slider1-4">        <div class="full-screen">
             <div class="mbr-slider slide carousel" data-pause="true" data-keyboard="false" data-ride="carousel"
-                data-interval="50000000">
+                data-interval="5000">
                 <ol class="carousel-indicators">
                     <li data-app-prevent-settings="" data-target="#slider1-4" class="active" data-slide-to="0"></li>
                     <li data-app-prevent-settings="" data-target="#slider1-4" data-slide-to="1"></li>
@@ -55,7 +55,7 @@
                                             mundo para que tú y todos podamos compartir y disfrutar del arte 3D, dibujo
                                             y el diseño gráfico</p>
                                             <div class="mbr-section-btn" buttons="0"><a class="btn btn-primary display-4"
-                                                href="random.php">Explorar diseños</a> </div>
+                                                href="random.php">Clickea aquí... o no</a> </div>
                                     </div>
                                 </div>
                             </div>
