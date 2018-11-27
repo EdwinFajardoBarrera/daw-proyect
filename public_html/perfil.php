@@ -36,7 +36,6 @@ $postImagenes = $ctrlConexion->getImagesByUser2($_SESSION['Username']);
         <link rel="stylesheet" href="assets/theme/css/style.css">
         <link rel="stylesheet" href="assets/gallery/style.css">
         <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-        <link rel="stylesheet" href="css/imagenes.css" type="text/css">
 
 
 

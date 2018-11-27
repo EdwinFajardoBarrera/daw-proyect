@@ -8,47 +8,15 @@ and open the template in the editor.
     Author     : Kirbey
 */
 
-#closeBtn{
-    top: 0.2rem;
-    right: 0.2rem;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 25px;
-}
-
-#prevBtn{
-    margin-left: 0.2rem;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 25px;
-}
-
-#nextBtn{
-    opacity: 90%;
-    margin-right: 0.2rem;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 25px;
-}
-
-#imageBox {
-    height: calc;
-    display: inline-block;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
 #commentsElementBox{
     width: 100%;
-    height: 95%;
-    margin-bottom: 3%;
+    height: 100%;
     background-color: #eff1f3;
     border-radius: .25rem;
     display: inline-block;
-    overflow-y: scroll;
+    overflow: hidden;
+    padding:15px;
+    margin-right: 19px;
 }
 
 #profilePic{
@@ -78,29 +46,24 @@ and open the template in the editor.
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: .25rem;
-    -webkit-perspective: 600px;
 }
 
 #commment, #like{
     padding:0px;
+    background-color: transparent;
     font-size: 1.2rem;
     text-align: center;
     display: inline-block;
 }
 
 #commment:hover, #like:hover{
-    background-color: #d1ecf1;
+    cursor: pointer;
     border-radius: 1.5rem;
-    -webkit-animation-name: girando;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: once;
-    -webkit-animation-duration: 0.3s;
-    -webkit-transform-style: preserve-3d;
+    background-color: #4ae;
 }
 
-@-webkit-keyframes girando {
-    from {-webkit-transform: rotateX(0deg);}
-    to   {-webkit-transform: rotateX(90deg);}
+#commment #like {
+    transition: background-color 1.0s linear 0.2s;
 }
 
 #commentsColumn{
@@ -120,6 +83,12 @@ and open the template in the editor.
     overflow-y: scroll;
 }
 
+#commentTxtArea{
+    display: inline-flex;
+    padding: 0px;
+    align-content: center;
+}
+
 #commentsCharged div{
     background-color: #ffffff;
     border-radius: 1.5rem;
@@ -136,4 +105,19 @@ and open the template in the editor.
     padding: 8px;
     box-sizing: border-box;
     resize: none;
+}
+
+#btnRandom:hover{
+    background-color: #d1ecf1;
+    border-radius: 1.5rem;
+    -webkit-animation-name: girando;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: once;
+    -webkit-animation-duration: 0.5s;
+    -webkit-transform-style: preserve-3d;
+}
+
+textarea#commentTxtBox {
+  width: 100%;
+  margin-bottom: .25rem;
 }

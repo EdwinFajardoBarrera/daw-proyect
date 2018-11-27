@@ -13,15 +13,13 @@ $ctrlConexion = new QueryConsults();
 $username = $ctrlConexion->getNombreUsuario($_SESSION['Username']);
 $comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username']);
 $rate = $ctrlConexion->getRateUsuario($_SESSION['Username']);
-$imagenes = $ctrlConexion->getImagesByUser($_SESSION['Username']);
-$postImagenes = $ctrlConexion->getImagesByUser2($_SESSION['Username']);
 /* Generacion de imagenes */
 $user = "root";
 $password = "fireemblem1";
 $host = "localhost";
 $database = "wgt-db";
 $conexion = new mysqli($host, $user, $password, $database);
-$consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
+$consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType`, I.`id` FROM images I, profile PR, posts PO
             WHERE PR.`name` = '" . $_SESSION['Username'] . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
 $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
 
@@ -30,12 +28,10 @@ while ($columna = $resultado->fetch_assoc()) {
     $cadenaGenerada[$numImagen] = '
             
             <div class="card">
-                    <a data-toggle="modal" data-target="#modal" href="' . $numImagen . '">
-                        <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top" onclick="obtenerElemento(this.src)">
+                    <a data-toggle="modal" data-target="#modal">
+                        <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top" onclick="obtenerElemento(this.src); chargeComments(' . $columna["id"] . '); setActiveImage(' . $columna["id"] . ');">
                     </a>
             </div>';
-
-    $arrayId[$numImagen] = '<img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="img-fluid rounded">';
     $numImagen++;
 }
 $conexion->close();
@@ -51,15 +47,24 @@ $conexion->close();
         <title>Perfil de <?= utf8_encode($username) ?></title>
         <!--Bootstrap!-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+        
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css"><link rel="stylesheet" href="assets/dropdown/css/style.css">
+        <link rel="stylesheet" href="assets/theme/css/style.css">
+        <link rel="stylesheet" href="assets/gallery/style.css">
+        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
         <!--Mis hojas de estilo!-->
         <link rel="stylesheet" href="css/imagenes.css">
+        <link rel="stylesheet" href="css/imageOverlay.css">
+        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
 
 
     </head>
 
-    <body onresize="chargeComments(5);">
+    <body>
 
         <?php
         //include 'headerN.php';
@@ -141,7 +146,7 @@ $conexion->close();
                     <div class="row">
                         <div class="col-sm-8 align-self-center">
                             <div class="modal-dialog modal-lg modal-dialog-centered" id="rolloGaleria" role="document">
-                                <img src="https://images5.alphacoders.com/376/thumb-1920-376912.jpg" class="img-fluid rounded">
+                                <img id="overImg" src="https://images5.alphacoders.com/376/thumb-1920-376912.jpg" class="img-fluid rounded">
                             </div>
                         </div>
                         <div class="col-sm-3 align-self-center" id="commentsElementBox">
@@ -164,7 +169,7 @@ $conexion->close();
                             </div>
                             <div id="commentTxtArea" class="col-sm-12">
                                 <img id="profilePicCom" style="width: 50px; height: 50px; border-radius: 100%; " src="icons/perfil.png">
-                                <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público"></textarea>
+                                <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event,'<?=$_SESSION['Username']?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
                             </div>
                         </div>
                     </div>
@@ -174,6 +179,7 @@ $conexion->close();
 
 
         <script></script>
+        <script src="Js/imageOverlay.js"></script>
         <script src="Js/comentariosInicio.js"></script>
         <!--Bootstrap scripts!-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
