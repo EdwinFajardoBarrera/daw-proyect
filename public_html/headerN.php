@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="./estilosInicio.css">
   <link rel="stylesheet" type="text/css" href="./loginStyle.css">
   <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
   <!-- <script src="main.js"></script> -->

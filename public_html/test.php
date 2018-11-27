@@ -47,11 +47,11 @@ $conexion->close();
         <title>Perfil de <?= utf8_encode($username) ?></title>
         <!--Bootstrap!-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-  <link rel="stylesheet" href="assets/tether/tether.min.css"><link rel="stylesheet" href="assets/dropdown/css/style.css">
+
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+        <link rel="stylesheet" href="assets/tether/tether.min.css"><link rel="stylesheet" href="assets/dropdown/css/style.css">
         <link rel="stylesheet" href="assets/theme/css/style.css">
         <link rel="stylesheet" href="assets/gallery/style.css">
         <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
@@ -67,7 +67,7 @@ $conexion->close();
     <body>
 
         <?php
-        //include 'headerN.php';
+        include 'headerN.php';
         ?>
 
         <section class="testimonials5 cid-racG9LzvlY" id="testimonials5-x">
@@ -169,7 +169,7 @@ $conexion->close();
                             </div>
                             <div id="commentTxtArea" class="col-sm-12">
                                 <img id="profilePicCom" style="width: 50px; height: 50px; border-radius: 100%; " src="icons/perfil.png">
-                                <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event,'<?=$_SESSION['Username']?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
+                                <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event, '<?= $_SESSION['Username'] ?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
                             </div>
                         </div>
                     </div>
