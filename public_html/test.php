@@ -24,10 +24,17 @@ and open the template in the editor.
 
     $numImagen = 0;
     while ($columna = $resultado->fetch_assoc()) {
-        $todasLasImagenes[$numImagen] = '<div class="mySlides fade">
-                                            <img src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . '' . $columna["imageExtension"] . '" width="100%" height="500">
-                                         </div>';
-        $numImagen++;
+        if ($numImagen === 0) {
+            $todasLasImagenes[$numImagen] = '<div class="carousel-item active">
+                                                <img class="d-block w-100" src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . '' . $columna["imageExtension"] . '" >
+                                            </div>';
+            $numImagen++;
+        } else {
+            $todasLasImagenes[$numImagen] = '<div class="carousel-item">
+                                            <img class="d-block w-100" src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . '' . $columna["imageExtension"] . '" >
+                                        </div>';
+            $numImagen++;
+        }
     }
     ?>
 
@@ -56,13 +63,13 @@ and open the template in the editor.
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://getbootstrap.com/docs/4.1/assets/img/bootstrap-stack.png" alt="First slide">
+                            <img class="d-block w-100" src="https://getbootstrap.com/docs/4.1/assets/img/bootstrap-stack.png" >
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://getbootstrap.com/docs/4.1/assets/img/bootstrap-stack.png" alt="Second slide">
+                            <img class="d-block w-100" src="https://getbootstrap.com/docs/4.1/assets/img/bootstrap-stack.png" >
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://getbootstrap.com/docs/4.1/assets/img/bootstrap-stack.png" alt="Third slide">
+                            <img class="d-block w-100" src="https://getbootstrap.com/docs/4.1/assets/img/bootstrap-stack.png" >
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
