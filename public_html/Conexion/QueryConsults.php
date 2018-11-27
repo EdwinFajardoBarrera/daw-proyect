@@ -3,7 +3,7 @@
 class QueryConsults {
 
     private $user = "root";
-    private $password = "fireemblem1";
+    private $password = "";
     private $host = "localhost";
     private $database = "wgt-db";
 

@@ -1,9 +1,13 @@
 <?php
 
-    include 'config.php';
-    global $host, $user, $password, $database, $root_url;
-    $mysqli = new mysqli($host, $user, $password, $database);
-    $mysqli->set_charset("utf8");
+    // include 'config.php';
+    // global $host, $user, $password, $database, $root_url;
+    // require './Conexion/QueryConsults.php';
+    // $ctrlConexion = new QueryConsults();
+    $mysqli = $ctrlConexion->startConexion();
+
+    // $mysqli = new mysqli($host, $user, $password, $database);
+    // $mysqli->set_charset("utf8");
     
     //Guarda los datos de la imagen subida por el usuario
     $imagen = basename( $_FILES['archivoAsubir']['name']);
