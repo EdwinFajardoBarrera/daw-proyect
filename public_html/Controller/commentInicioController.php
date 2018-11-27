@@ -1,7 +1,7 @@
 <?php
 /*Datos de conexion a base de datos*/
 $user = "root";
-$password = "fireemblem1";
+$password = "";
 $host = "localhost";
 $database = "wgt-db";
 
