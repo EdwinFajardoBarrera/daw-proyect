@@ -15,7 +15,7 @@ $comentario = $ctrlConexion->getDescripcionUsuario($_SESSION['Username']);
 $rate = $ctrlConexion->getRateUsuario($_SESSION['Username']);
 /* Generacion de imagenes */
 $user = "root";
-$password = "fireemblem1";
+$password = "";
 $host = "localhost";
 $database = "wgt-db";
 $conexion = new mysqli($host, $user, $password, $database);
@@ -47,11 +47,11 @@ $conexion->close();
         <title>Perfil de <?= utf8_encode($username) ?></title>
         <!--Bootstrap!-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-        <link rel="stylesheet" href="assets/tether/tether.min.css"><link rel="stylesheet" href="assets/dropdown/css/style.css">
+        
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css"><link rel="stylesheet" href="assets/dropdown/css/style.css">
         <link rel="stylesheet" href="assets/theme/css/style.css">
         <link rel="stylesheet" href="assets/gallery/style.css">
         <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
@@ -67,7 +67,7 @@ $conexion->close();
     <body>
 
         <?php
-        include 'headerN.php';
+        //include 'headerN.php';
         ?>
 
         <section class="testimonials5 cid-racG9LzvlY" id="testimonials5-x">
@@ -117,6 +117,24 @@ $conexion->close();
 
                                     </div>
                                 </form> 
+                                
+                                <?php
+                                    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                        $tipoImagen = isset($_POST['tipoImagen']) ? $_POST['tipoImagen'] : null;
+
+                                        if($tipoImagen) {
+                                            $target_path = "DB/" . $tipoImagen . "/"; 
+                                            $target_path = $target_path . basename( $_FILES['archivoAsubir']['name']); 
+                                            if((move_uploaded_file($_FILES['archivoAsubir']['tmp_name'], $target_path)) && ($tipoImagen)) { 
+                                                echo "<center>El archivo ". basename( $_FILES['archivoAsubir']['name'])." ha sido subido exitosamente!</center>";  
+                                                include 'Migrations/saveImage.php';
+                                            }
+                                        } else { 
+                                            echo "<center>Hubo un error al subir tu archivo! Por favor intenta de nuevo</center>"; 
+                                        }
+                                    }
+                                ?>
+                                
                             </div>  
                         </div>
                     </div>
@@ -169,7 +187,7 @@ $conexion->close();
                             </div>
                             <div id="commentTxtArea" class="col-sm-12">
                                 <img id="profilePicCom" style="width: 50px; height: 50px; border-radius: 100%; " src="icons/perfil.png">
-                                <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event, '<?= $_SESSION['Username'] ?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
+                                <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event,'<?=$_SESSION['Username']?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
                             </div>
                         </div>
                     </div>
