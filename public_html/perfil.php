@@ -7,7 +7,7 @@ if (!isset($_SESSION['Username'])) {
         </script>;";
 }
 
-include 'headerN.php';
+include 'header.php';
 include 'Conexion/QueryConsults.php';
 
 $ctrlConexion = new QueryConsults();
@@ -29,8 +29,6 @@ $cadenaGenerada = $ctrlConexion->getImagesByUser($_SESSION['Username']);
         <!--Mis hojas de estilo-->
         <link rel="stylesheet" href="css/imagenes.css">
         <link rel="stylesheet" href="css/imageOverlay.css">
-
-
 
     </head>
 

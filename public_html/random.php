@@ -8,6 +8,7 @@ and open the template in the editor.
     <?php
     session_start();
     require './Conexion/QueryConsults.php';
+    include 'header.php';
 
     $ctrlConexion = new QueryConsults();
     $conexion = $ctrlConexion->startConexion();
@@ -33,7 +34,6 @@ and open the template in the editor.
 
     <body>
         <?php
-        include 'headerN.php';
         ?>
         <div>
 

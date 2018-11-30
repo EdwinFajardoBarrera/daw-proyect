@@ -32,7 +32,7 @@
         <main>
             <!-- HEADER -->     
             <?php
-                include 'headerN.php';
+                include 'header.php';
             ?>
             <!--REGISTER FORM-->
             <div class="registro" id="registroDiv">

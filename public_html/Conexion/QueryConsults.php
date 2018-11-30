@@ -110,7 +110,7 @@ class QueryConsults {
 
         $numImagen = 0;
         while ($columna = $resultado->fetch_assoc()) {
-        $cadenaGenerada[$numImagen] = '
+            $cadenaGenerada[$numImagen] = '
                 
                 <div class="card">
                         <a data-toggle="modal" data-target="#modal">
@@ -140,7 +140,7 @@ class QueryConsults {
 
         $numImagen = 0;
         while ($columna = $resultado->fetch_assoc()) {
-        $cadenaGenerada[$numImagen] = '
+            $cadenaGenerada[$numImagen] = '
                 
                 <div class="card">
                         <a data-toggle="modal" data-target="#modal">
@@ -153,7 +153,36 @@ class QueryConsults {
 
         return $cadenaGenerada;
     }
-    
+
+    public function getImagesBySearch($searchText) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType`, I.`id` FROM images I, profile PR, posts PO
+        WHERE I.`imageName` like '%". $searchText ."%' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+        $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
+
+        $numImagen = 0;
+        while ($columna = $resultado->fetch_assoc()) {
+            $cadenaGenerada[$numImagen] = '
+                
+                <div class="card">
+                        <a data-toggle="modal" data-target="#modal">
+                            <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top elementInGallery" onclick="obtenerElemento(this.src); chargeComments(' . $columna["id"] . '); setActiveImage(' . $columna["id"] . ');">
+                        </a>
+                </div>';
+            $numImagen++;
+        }
+        $conexion->close();
+
+        return $cadenaGenerada;
+    }
+
     public function getImagesForUserInv($sessionUser) {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
 
@@ -205,7 +234,6 @@ class QueryConsults {
         $query = "UPDATE profile SET status = 0 WHERE name= '$user'";
         $resultado = $conexion->query($query);
         $conexion->close();
-
     }
 
     public function unBanUser($user) {
@@ -219,9 +247,7 @@ class QueryConsults {
         $query = "UPDATE profile SET status = 1 WHERE name= '$user'";
         $resultado = $conexion->query($query);
         $conexion->close();
-
     }
-
 
     public function getUserStatus($user) {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
@@ -235,10 +261,10 @@ class QueryConsults {
         $query = "SELECT status FROM profile WHERE name = '$user'";
         $resultado = $conexion->query($query);
 
-        while($columna = $resultado->fetch_assoc()) {
+        while ($columna = $resultado->fetch_assoc()) {
             $status = $columna['status'];
         }
-        
+
         $conexion->close();
 
         return $status;
@@ -256,8 +282,8 @@ class QueryConsults {
         $query = "SELECT profile.name, profiledata.email, profiledata.password FROM profile, profiledata WHERE profile.name";
         $resultado = $conexion->query($query);
 
-        while($columna = $resultado->fetch_assoc()) {
-            if($username == $columna['name'] && $email == $columna['email'] && password_verify($contra, $columna['password'])) {
+        while ($columna = $resultado->fetch_assoc()) {
+            if ($username == $columna['name'] && $email == $columna['email'] && password_verify($contra, $columna['password'])) {
                 $validation = true;
             }
         }
@@ -276,7 +302,7 @@ class QueryConsults {
         $crearPerfil = "INSERT INTO profile VALUES (NULL, '$username', 0, TRUE, now())";
 
         if (!$crearPerfil) {
-        echo "No se pudieron seleccionar los datos";
+            echo "No se pudieron seleccionar los datos";
         } else {
 
             $ejecutarPerfil = $conexion->query("$crearPerfil");
@@ -286,7 +312,7 @@ class QueryConsults {
             } else {
 
                 $query = $conexion->query("SELECT id FROM profile ORDER BY id DESC LIMIT 1");
-                $resultado = mysqli_fetch_array ($query);
+                $resultado = mysqli_fetch_array($query);
                 $profile_id = $resultado['id'];
 
                 $crearDatosPerfil = "INSERT INTO profileData VALUES (NULL, '$name', '$lastName', '$email', '$password', 'Bienvenido, edite su descripcion', '$profile_id', now())";
@@ -294,7 +320,7 @@ class QueryConsults {
                 $ejecutarDatos = $conexion->query("$crearDatosPerfil");
 
                 if (!$ejecutarDatos) {
-                echo "No se pudieron instertar los datos en la tabla";
+                    echo "No se pudieron instertar los datos en la tabla";
                 }
             }
         }
@@ -317,19 +343,21 @@ class QueryConsults {
         } else {
             return false;
         }
-
     }
-    
-    public function getUser(){
+
+    public function getUser() {
         return $this->user;
     }
-    public function getPassword(){
+
+    public function getPassword() {
         return $this->password;
     }
-    public function getHost(){
+
+    public function getHost() {
         return $this->host;
     }
-    public function getDB(){
+
+    public function getDB() {
         return $this->database;
     }
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'headerN.php';
+include 'header.php';
 require './Conexion/QueryConsults.php';
 
 $ctrlConexion = new QueryConsults();
