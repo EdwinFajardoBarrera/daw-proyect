@@ -63,36 +63,29 @@ and open the template in the editor.
     padding: 0px;
 }
 
-#elementInGallery{
-    transition-property: width;
+.elementInGallery{
+    transition-property: opacity;
     transition-duration: 0.1s;
-    width: 100%;
+    opacity: 100%;
 }
 
-#elementInGallery:hover {
+.elementInGallery:hover {
     cursor: pointer;
-    transition-property: width;
+    transition-property: opacity;
     transition-duration: 0.1s;
-    width: 103%;
-/*    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -webkit-transition-duration: 1;
-    transform: scale(1.1)*/
+    opacity: 150%;
 }
 .imgOfGalery{
-    position: relative;
-    transition-property: width;
-    transition-duration: 0.1s;
-    width: 100%;
+    transition-property: filter;
+    transition-duration: 0.2s;
+    filter:brightness(1);
 }
 
 .imgOfGalery:hover{
     cursor: pointer;
-    transition-property: width;
-    transition-duration: 0.1s;
-    width: 103%;
+    transition-property: filter;
+    transition-duration: 0.2s;
+    filter:brightness(0.5);
 }
 
 table{

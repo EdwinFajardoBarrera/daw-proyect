@@ -1,149 +1,130 @@
 <?php
-    session_start();    
-        require './Conexion/QueryConsults.php';    
-        $ctrlConexion = new QueryConsults();
-        $conexion = $ctrlConexion->startConexion();
-        $consulta = "SELECT * FROM images WHERE imageType='3Ddesigns'";
-        $resultado = $conexion->query($consulta);
-        $conexion->close();
-     
-        $numImagen = 0;
-        while($columna = $resultado->fetch_assoc()) {  
-            
-            $todasLasImagenes[$numImagen] = 
-                        '
-                         <div class="mbr-gallery-item mbr-gallery-item--p4" data-video-url="false" data-tags="Awesome">
-                                    <div href="#lb-gallery1-h" data-slide-to="$i" data-toggle="modal"><img src="DB/3Ddesigns/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="400" height="350"><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7"><a
-                                                href="http://www.google.com">Perfil de Artista</a> &nbsp; &nbsp; &nbsp;
-                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href=""></a></span>
-                                    </div>
-                         </div>
-                         
-                        ';
-         
-            if ($numImagen == 0) {
-                $carrousel[$numImagen] =
-                        '<div class="carousel-item active"><img src="DB/3Ddesigns/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="500" height="500"></div>';
-            } else {
-                $carrousel[$numImagen] =
-                        '<div class="carousel-item"><img src="DB/3Ddesigns/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" alt="Cinque Terre" width="500" height="500"></div>';
-            }
-            $numImagen++;
-        }
-    ?>
+session_start();
+include 'headerN.php';
+require './Conexion/QueryConsults.php';
+
+$ctrlConexion = new QueryConsults();
+$cadenaGenerada = $ctrlConexion->getImagesByType('3Ddesigns');
+?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <title>3D</title>
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-    <link rel="stylesheet" href="assets/tether/tether.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="assets/dropdown/css/style.css">
-    <link rel="stylesheet" href="assets/theme/css/style.css">
-    <link rel="stylesheet" href="assets/gallery/style.css">
-    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-</head>
-<body>
-    <?php
-        include 'headerN.php';
-    ?>
-    <section class="mbr-section content5 cid-racuj3FtPc mbr-parallax-background" id="content5-q">
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 col-md-8">
-                    <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Diseños 3D</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">
-                        Explota tu creatividad en 3 dimensiones
-                    </h3>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <title>Dibujos</title>
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+        <link rel="stylesheet" href="assets/tether/tether.min.css">
+        <link rel="stylesheet" href="assets/dropdown/css/style.css">
+        <link rel="stylesheet" href="assets/theme/css/style.css">
+        <link rel="stylesheet" href="assets/gallery/style.css">
+        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+
+        <!--Mis hojas de estilo-->
+        <link rel="stylesheet" href="css/imagenes.css">
+        <link rel="stylesheet" href="css/imageOverlay.css">
+
+    </head>
+
+    <body style="background-color: #465362">
+        <section class="mbr-section content5 cid-racuj3FtPc mbr-parallax-background" id="content5-q">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Diseños 3D</h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">
+                            Explota tu creatividad en 3 dimensiones
+                        </h3>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!--Galeria-->
+        <div class="page-header">
+            <h1 style="text-align: center; color: #ffffff">Galer&iacute;a</h1>
         </div>
-    </section>
-    <section class="mbr-gallery mbr-slider-carousel cid-racgjri4yx" id="gallery1-h">
         <div class="container">
-            <div>
-                <!-- Gallery -->
-                <div class="mbr-gallery-row">
-                    <div class="mbr-gallery-layout-default">
-                        <div>
-                            <div>      
-                                <?php
-                                    for($cont = 0; $cont < $numImagen; $cont++) {
-                                       echo $todasLasImagenes[$cont];
-                                    }
-                                ?>       
-                            </div>
-                        <div class="clearfix"></div>
+            <div class="card-columns" id="galeria">
+                <?php
+                if ($cadenaGenerada > 0) {
+                    $cuenta = count($cadenaGenerada);
+                    for ($cont = 0; $cont < $cuenta; $cont++) {
+                        echo $cadenaGenerada[$cont];
+                    }
+                }
+                ?>
+            </div>
+        </div>
+
+        <!--Visualizador de fotos-->
+        <div class="container-fluid">
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="row">
+                    <div class="col-sm-8 align-self-center">
+                        <div class="modal-dialog modal-lg modal-dialog-centered card-img-top" id="rolloGaleria" role="document">
+                            <img id="overImg" src="https://images5.alphacoders.com/376/thumb-1920-376912.jpg" class="img-fluid rounded">
+                        </div>
                     </div>
-                </div><!-- Lightbox -->
-                <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1"
-                    data-keyboard="true" data-interval="false" id="lb-gallery1-h">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="carousel-inner">
-                                    <?php
-                                        for($cont = 0; $cont < $numImagen; $cont++) {
-                                           echo $carrousel[$cont];
-                                        }
-                                    ?> 
-                                </div><a class="carousel-control carousel-control-prev" role="button" data-slide="prev"
-                                    href="#lb-gallery1-h"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span
-                                        class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next"
-                                    role="button" data-slide="next" href="#lb-gallery1-h"><span class="mbri-right mbr-iconfont"
-                                        aria-hidden="true"></span><span class="sr-only">Next</span></a><a class="close"
-                                    href="#" role="button" data-dismiss="modal"><span class="sr-only">Close</span></a>
+                    <div class="col-sm-3 align-self-center" id="commentsElementBox">
+                        <div id="elementInCommentBox" class="col-sm-12">
+                            <img id="profilePic" src="icons/perfil.png" onmouseover="this.style.cursor = 'pointer'">
+                            Nombre de usuario
+                        </div>
+                        <div id="elementLikeComment" class="row">
+                            <div id="like" class="col-sm-6">
+                                <a href="#">Me gusta</a>
                             </div>
+                            <div id="commment" class="col-sm-6" onclick="getFocus();">
+                                <a>Comentar</a>
+                            </div>
+                        </div>
+                        <div id="commentsColumn" class="col-sm-12" >
+                            <div id="commentsCharged" class="col-sm-12">
+                                No hay comentarios que mostrar
+                            </div>
+                        </div>
+                        <div id="commentTxtArea" class="col-sm-12">
+                            <img id="profilePicCom" style="width: 50px; height: 50px; border-radius: 100%; " src="icons/perfil.png">
+                            <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event, '<?= $_SESSION['Username'] ?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
+                            <button class="btn btn-black-outline" style="width: 50px; height: 50px; white-space: nowrap;">Comentar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <?php
+        <?php
         include 'footer.html';
-    ?>
+        ?>
 
-    <!-- <section once="" class="cid-racuj5w13z" id="footer6-u">
-        <div class="container">
-            <div class="media-container-row align-center mbr-white">
-                <div class="col-12">
-                    <p class="mbr-text mb-0 mbr-fonts-style display-7">
-                        © Copyright 2018 Web Got Tallent - All Rights Reserved
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section> -->
+        <!--Mis scripts-->
+        <script src="Js/imageOverlay.js"></script>
+        <script src="Js/comentariosInicio.js"></script>
 
-
-    <script src="assets/web/assets/jquery/jquery.min.js"></script>
-    <script src="assets/popper/popper.min.js"></script>
-    <script src="assets/tether/tether.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/vimeoplayer/jquery.mb.vimeo_player.js"></script>
-    <script src="assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-    <script src="assets/parallax/jarallax.min.js"></script>
-    <script src="assets/smoothscroll/smooth-scroll.js"></script>
-    <script src="assets/masonry/masonry.pkgd.min.js"></script>
-    <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/dropdown/js/script.min.js"></script>
-    <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-    <script src="assets/theme/js/script.js"></script>
-    <script src="assets/slidervideo/script.js"></script>
-    <script src="assets/gallery/player.min.js"></script>
-    <script src="assets/gallery/script.js"></script>
+        <script src="assets/web/assets/jquery/jquery.min.js"></script>
+        <script src="assets/popper/popper.min.js"></script>
+        <script src="assets/tether/tether.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
+        <script src="assets/parallax/jarallax.min.js"></script>
+        <script src="assets/smoothscroll/smooth-scroll.js"></script>
+        <script src="assets/masonry/masonry.pkgd.min.js"></script>
+        <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/dropdown/js/script.min.js"></script>
+        <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+        <script src="assets/theme/js/script.js"></script>
+        <script src="assets/gallery/player.min.js"></script>
+        <script src="assets/gallery/script.js"></script>
 
 
-</body>
+    </body>
 
 </html>

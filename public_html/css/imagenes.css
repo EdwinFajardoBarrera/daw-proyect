@@ -38,28 +38,24 @@ and open the template in the editor.
     border-radius: .25rem;
 }
 
-#elementLikeComment{
-    border-bottom-color: #007bff;
-    border-bottom-width: 1px;
-    border-top-color: #007bff;
-    border-top-width: 1px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: .25rem;
-}
-
 #commment, #like{
     padding:0px;
     background-color: transparent;
-    font-size: 1.2rem;
     text-align: center;
     display: inline-block;
+    position: relative;
+    font-size: 1rem;
+    transition-property: font-size;
+    transition-duration: 0.1s;
 }
 
 #commment:hover, #like:hover{
     cursor: pointer;
     border-radius: 1.5rem;
-    background-color: #4ae;
+    cursor: pointer;
+    transition-property: font-size;
+    transition-duration: 0.1s;
+    font-size: 1.2rem;
 }
 
 #commment #like {

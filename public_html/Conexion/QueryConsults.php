@@ -3,7 +3,7 @@
 class QueryConsults {
 
     private $user = "root";
-    private $password = "root";
+    private $password = "fireemblem1";
     private $host = "localhost";
     private $database = "wgt-db";
 
@@ -114,7 +114,7 @@ class QueryConsults {
                 
                 <div class="card">
                         <a data-toggle="modal" data-target="#modal">
-                            <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top" onclick="obtenerElemento(this.src); chargeComments(' . $columna["id"] . '); setActiveImage(' . $columna["id"] . ');">
+                            <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top elementInGallery" onclick="obtenerElemento(this.src); chargeComments(' . $columna["id"] . '); setActiveImage(' . $columna["id"] . ');">
                         </a>
                 </div>';
             $numImagen++;
@@ -124,31 +124,36 @@ class QueryConsults {
         return $cadenaGenerada;
     }
 
-    // public function getImagesByUser2($sessionUser) {
-    //     $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
+    public function getImagesByType($type) {
+        $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
 
-    //     /* comprueba la conexión */
-    //     if (mysqli_connect_errno()) {
-    //         printf("Conexion fallida: %s\n", mysqli_connect_error());
-    //         exit();
-    //     }
+        /* comprueba la conexión */
+        if (mysqli_connect_errno()) {
+            printf("Conexion fallida: %s\n", mysqli_connect_error());
+            exit();
+        }
 
-    //     $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
-    //         WHERE PR.`name` = '" . $sessionUser . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
-    //     $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-    //     $numImagen = 0;
-    //     while ($columna = $resultado->fetch_assoc()) {
-    //         if ($numImagen == 0) {
-    //             $todasLasImagenes[$numImagen] = '<div class="carousel-item"><img src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" alt="" title="' . $columna["imageName"] . '"></div>';
-    //         } 
-    //         $todasLasImagenes[$numImagen] = '<div class="carousel-item"><img src="DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" alt="" title="' . $columna["imageName"] . '"></div>';
-            
-    //         $numImagen++;
-    //     }
-        
-    //     return $todasLasImagenes;
-    // }
+        // $conexion = new mysqli($host, $user, $password, $database);
+        $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType`, I.`id` FROM images I, profile PR, posts PO
+        WHERE I.`imageType` = '" . $type . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
+        $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
 
+        $numImagen = 0;
+        while ($columna = $resultado->fetch_assoc()) {
+        $cadenaGenerada[$numImagen] = '
+                
+                <div class="card">
+                        <a data-toggle="modal" data-target="#modal">
+                            <img src="http://localhost/daw-proyect/public_html/DB/' . $columna["imageType"] . '/' . $columna["imageName"] . $columna["imageExtension"] . '" class="card-img-top imgOfGalery" onclick="obtenerElemento(this.src); chargeComments(' . $columna["id"] . '); setActiveImage(' . $columna["id"] . ');">
+                        </a>
+                </div>';
+            $numImagen++;
+        }
+        $conexion->close();
+
+        return $cadenaGenerada;
+    }
+    
     public function getImagesForUserInv($sessionUser) {
         $conexion = new mysqli($this->host, $this->user, $this->password, $this->database);
 

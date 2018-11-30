@@ -7,6 +7,7 @@ if (!isset($_SESSION['Username'])) {
         </script>;";
 }
 
+include 'headerN.php';
 include 'Conexion/QueryConsults.php';
 
 $ctrlConexion = new QueryConsults();
@@ -24,42 +25,28 @@ $cadenaGenerada = $ctrlConexion->getImagesByUser($_SESSION['Username']);
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <title>Perfil de <?= utf8_encode($username) ?></title>
-        <!--Bootstrap!-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-        <link rel="stylesheet" href="assets/tether/tether.min.css"><link rel="stylesheet" href="assets/dropdown/css/style.css">
-        <link rel="stylesheet" href="assets/theme/css/style.css">
-        <link rel="stylesheet" href="assets/gallery/style.css">
-        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-        <!--Mis hojas de estilo!-->
+        <!--Mis hojas de estilo-->
         <link rel="stylesheet" href="css/imagenes.css">
         <link rel="stylesheet" href="css/imageOverlay.css">
-        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
 
 
     </head>
 
     <body>
-
-        <?php
-        include 'headerN.php';
-        ?>
-
         <section class="testimonials5 cid-racG9LzvlY" id="testimonials5-x">
 
 
             <div class="container">
                 <div class="media-container-row">
                     <div class="title col-12 align-center">
-                        <h2 class="pb-3 mbr-fonts-style display-2"><?= $_SESSION['Username'] ?></h2>
+                        <h2 class="pb-3 mbr-fonts-style display-2"><?= utf8_encode($_SESSION['Username']) ?></h2>
 
                     </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="media-container-column">
                     <div class="mbr-testimonial align-center col-12 col-md-10">
@@ -68,80 +55,82 @@ $cadenaGenerada = $ctrlConexion->getImagesByUser($_SESSION['Username']);
                                 <div class="testimonial-photo">
                                     <img src="icons/perfil.png">
                                 </div>
-                                <p class="mbr-text mbr-fonts-style mbr-white display-7"><?= $comentario ?><br>
+                                <p class="mbr-text mbr-fonts-style mbr-white display-7"><?= utf8_encode($comentario) ?><br>
                                 </p>
-                                <p id="resizeResult">Resolucion actual</p>
                             </div>
                             <div class="card-footer">
-                                <div class="mbr-author-name mbr-bold mbr-fonts-style mbr-white display-7"><?= utf8_encode($username) ?></div>
+                                <div class="mbr-author-name mbr-bold mbr-fonts-style mbr-white display-7"><?=$username?></div>
                                 <small class="mbr-author-desc mbr-italic mbr-light mbr-fonts-style mbr-white display-7">
                                     Diseñador Gráfico</small>
                                 <div class="mbr-author-name mbr-bold mbr-fonts-style mbr-white display-7">Puntuaci&oacute;n de usuario: <?= $rate ?>%</div>
                             </div>
+                            <div class="card-footer"> <br>
+                                <h3 style="color: #ffffff">Elije el archivo que deseas compartir y su categoría</h3>
+                                <div class="container-fluid">
+                                    <form action="Migrations/saveImage.php" method="post" enctype="multipart/form-data">
 
-                            <div class="card-footer"> 
+                                        <div class="row">
+                                            <div class="col-md-9">
 
-                                <br>
-                                <form enctype="multipart/form-data" method="POST">
+                                                <input type="hidden" name="form" value="upfile">
+                                                <input type="hidden" name="user" value="<?= $_SESSION['Username']?>">
+                                                <input type="file" name="archivo" class="btn-black-outline form-control" style="cursor: pointer" multiple accept="image/jpeg, image/gif, image/png" required>
 
-                                    <div class="container align-left col-12"> 
-                                        <small class="mbr-author-desc mbr-italic mbr-light mbr-fonts-style mbr-white display-7">
-                                            Elije el archivo que deseas compartir y su categoría</small>
-                                        <input type="submit" value="Subir archivo"/> 
-                                        <input name="archivoAsubir" type="file" multiple accept="image/jpeg, image/gif, image/png"><br />
-                                        <input type="radio" name="tipoImagen" value="draws"> Dibujo<br>
-                                        <input type="radio" name="tipoImagen" value="designs"> Diseño grafico<br>
-                                        <input type="radio" name="tipoImagen" value="3Ddesigns"> Diseño 3D<br>
+                                                <div class="row">
+                                                    <label class="btn btn-secondary">
+                                                        <input type="radio" name="tipoImagen" value="draws" required>Dibujo
+                                                    </label>
+                                                    <label class="btn btn-secondary">
+                                                        <input type="radio" name="tipoImagen" value="designs" required>Dise&ntilde;o
+                                                    </label>
+                                                    <label class="btn btn-secondary">
+                                                        <input type="radio" name="tipoImagen" value="3Ddesigns" required>Dise&ntilde;o 3D
+                                                    </label>
+                                                </div>
 
+                                            </div>
+                                            <div class="col-md">
+                                                <button type="submit" class="btn btn-black btn-sm" value="Subir archivo">Subir</button>
+                                            </div>
 
-                                    </div>
-                                </form> 
+                                        </div>
+                                    </form>
 
-                                <?php
-                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                                    $tipoImagen = isset($_POST['tipoImagen']) ? $_POST['tipoImagen'] : null;
-
-                                    if ($tipoImagen) {
-                                        $target_path = "DB/" . $tipoImagen . "/";
-                                        $target_path = $target_path . basename($_FILES['archivoAsubir']['name']);
-                                        if ((move_uploaded_file($_FILES['archivoAsubir']['tmp_name'], $target_path)) && ($tipoImagen)) {
-                                            echo "<center>El archivo " . basename($_FILES['archivoAsubir']['name']) . " ha sido subido exitosamente!</center>";
-                                            include 'Migrations/saveImage.php';
-                                        }
-                                    } else {
-                                        echo "<center>Hubo un error al subir tu archivo! Por favor intenta de nuevo</center>";
-                                    }
-                                }
-                                ?>
-
-                            </div>  
+                                </div>  
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <h1 class="text-center display-4 my-4">Galeria</h1>
+
+            <!--Galeria-->
+            <div class="page-header">
+                <h1 style="text-align: center; color: #ffffff">Galer&iacute;a</h1>
+            </div>
             <div class="container">
                 <div class="card-columns" id="galeria">
                     <?php
-                    $cuenta = count($cadenaGenerada);
-                    for ($cont = 0; $cont < $cuenta; $cont++) {
-                        echo $cadenaGenerada[$cont];
+                    if ($cadenaGenerada > 0) {
+                        $cuenta = count($cadenaGenerada);
+                        for ($cont = 0; $cont < $cuenta; $cont++) {
+                            echo $cadenaGenerada[$cont];
+                        }
                     }
                     ?>
                 </div>
             </div>
 
-            <!--Visualizador de fotos!-->
-            <div class="container">
+            <!--Visualizador de fotos-->
+            <div class="container-fluid">
                 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                    <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
 
                     <div class="row">
                         <div class="col-sm-8 align-self-center">
-                            <div class="modal-dialog modal-lg modal-dialog-centered" id="rolloGaleria" role="document">
+                            <div class="modal-dialog modal-lg modal-dialog-centered card-img-top" id="rolloGaleria" role="document">
                                 <img id="overImg" src="https://images5.alphacoders.com/376/thumb-1920-376912.jpg" class="img-fluid rounded">
                             </div>
                         </div>
@@ -166,6 +155,7 @@ $cadenaGenerada = $ctrlConexion->getImagesByUser($_SESSION['Username']);
                             <div id="commentTxtArea" class="col-sm-12">
                                 <img id="profilePicCom" style="width: 50px; height: 50px; border-radius: 100%; " src="icons/perfil.png">
                                 <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event, '<?= $_SESSION['Username'] ?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
+                                <button class="btn btn-black-outline" style="width: 50px; height: 50px; white-space: nowrap;">Comentar</button>
                             </div>
                         </div>
                     </div>
@@ -173,8 +163,7 @@ $cadenaGenerada = $ctrlConexion->getImagesByUser($_SESSION['Username']);
             </div>
         </section>
 
-
-        <script></script>
+        <!--Mis scripts-->
         <script src="Js/imageOverlay.js"></script>
         <script src="Js/comentariosInicio.js"></script>
         <!--Bootstrap scripts!-->

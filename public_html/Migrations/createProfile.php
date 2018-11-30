@@ -6,9 +6,9 @@ $ctrlConexion = new QueryConsults();
 $conexion = $ctrlConexion->startConexion();
 
 //Aquí se obtienen los datos del formulario
-$name = $_POST["name"];
+$name = utf8_encode($_POST["name"]);
 $last_name = $_POST["last_name"];
-$username = $_POST["username"];
+$username = utf8_encode($_POST["username"]);
 $email = $_POST["email"];
 $password = $_POST["password"];
 $passwordConfirm = $_POST["passwordConfirm"];

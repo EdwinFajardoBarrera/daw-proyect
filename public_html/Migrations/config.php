@@ -7,7 +7,7 @@ $root_url = "http://localhost/daw-proyect/public_html/";
 
 $user = "root";
 
-$password = "root";
+$password = "fireemblem1";
 
 $host = "localhost";
 
