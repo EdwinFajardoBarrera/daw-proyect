@@ -1,9 +1,11 @@
 <?php
 /*Datos de conexion a base de datos*/
-$user = "root";
-$password = "fireemblem1";
-$host = "localhost";
-$database = "wgt-db";
+require'../Conexion/QueryConsults.php';
+$instancia = new QueryConsults();
+$user = $instancia->getUser();
+$password = $instancia->getPassword();
+$host = $instancia->getHost();
+$database = $instancia->getDB();
 
 /*respuesta de lista de comentarios por id*/
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -18,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $numImagen = 0;
     while ($columna = $resultado->fetch_assoc()) {
-        $comments[$numImagen] = '<a href="perfilVisitante.php?user=' . $columna['name'] . '">' . $columna['name'] . '</a>: ' . $columna['content'] . '<br/>';
+        $comments[$numImagen] = '<div class="col-sm-12" ><a href="perfilVisitante.php?user=' . $columna['name'] . '">' . $columna['name'] . '</a> ' . $columna['content'] . '</div>';
         $numImagen++;
     }
     mysqli_close($conexion);

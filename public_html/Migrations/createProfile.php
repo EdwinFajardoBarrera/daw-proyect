@@ -1,54 +1,70 @@
 <?php
-
 //Creas una variable de tipo objeto mysqli con los datos de la bd y el charset que quieras
-include 'config.php';
-global $host, $user, $password, $database, $root_url;
-
-$mysqli = new mysqli($host, $user, $password, $database);
-$mysqli->set_charset("utf8");
+//include 'config.php';
+require '../Conexion/QueryConsults.php';
+$ctrlConexion = new QueryConsults();
+$conexion = $ctrlConexion->startConexion();
 
 //Aquí se obtienen los datos del formulario
-$name = $_POST["name"];
+$name = utf8_encode($_POST["name"]);
 $last_name = $_POST["last_name"];
-$username = $_POST["username"];
+$username = utf8_encode($_POST["username"]);
 $email = $_POST["email"];
+$password = $_POST["password"];
+$passwordConfirm = $_POST["passwordConfirm"];
+$captcha = $_POST['g-recaptcha-response'];
+$secret = '6LdJRXcUAAAAALouIjSUxXaQmAEuYLqLgnPHv7wG';
+$errorsValidator = false;
 
-$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-
-$crearPerfil = "INSERT INTO profile VALUES (NULL, '$username', 0, TRUE, now())";
-
-if (!$crearPerfil) {
-  echo "No se pudieron seleccionar los datos";
+if (strlen($password) < 8) {
+  $errorPassword = "Contraseña muy corta";
+  $errorsValidator = true;
 } else {
-
-  $ejecutarPerfil = $mysqli->query("$crearPerfil");
-
-  if (!$ejecutarPerfil) {
-    echo "No se pudieron instertar los datos en la tabla";
-  } else {
-
-    $query = $mysqli->query("SELECT id FROM profile ORDER BY id DESC LIMIT 1");
-    $resultado = mysqli_fetch_array ($query);
-    $profile_id = $resultado['id'];
-
-    $crearDatosPerfil = "INSERT INTO profileData VALUES (NULL, '$name', '$last_name', '$email', '$password', 'Bienvenido, edite su descripcion', '$profile_id', now())";
-
-    $ejecutarDatos = $mysqli->query("$crearDatosPerfil");
-
-    if (!$ejecutarDatos) {
-      echo "No se pudieron instertar los datos en la tabla";
-    } else {
-      header("Location: $root_url");
-    }
-
+  $errorPassword = "";
+  $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 }
 
+if ($ctrlConexion->usernameIsAviable($username) == false) {
+  $errorUsername = "El nombre de usuario ya se encuentra en uso";
+  $errorsValidator = true;
+} else {
+  $errorUsername = "";
+}
 
+if (password_verify($passwordConfirm, $password) == false) {
+  $errorPasswordConfirm = "Las contraseñas no coinciden";
+  $errorsValidator = true;
+} else {
+  $errorPasswordConfirm = "";
+}
 
+if(!$captcha) {
+  $errorCaptcha = "No se selecciono el captcha";
+  $errorsValidator = true;  
+  } else {
+  
+    $errorCaptcha = "";
+  $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha");
+  
+  $arr = json_decode($response, TRUE);
+}
 
+if ($errorsValidator == true ) {
+  echo "<script>
+        alert('Errores:" . '\n' ."  ". $errorUsername . " " . '\n' ."  ". $errorPassword . " " . '\n' ." ". $errorPasswordConfirm . " " . '\n' ." ". $errorCaptcha . "');
+        window.location= Index.php;
+        </script>";
+  header("refresh:0; url=../login.php");
+} else {
+  $ctrlConexion->createProfile($name, $last_name, $username, $email, $password);
+  echo "<script>
+      alert('Usuario creado satisfactoriamente');
+      window.location= Index.php;
+      </script>";
+  header("refresh:0; url=../login.php");
+}
+ 
 
-
-  }
 
 
 ?>

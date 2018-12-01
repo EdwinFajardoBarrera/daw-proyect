@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/inicio.php</file>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/styles.css</file>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Js/comentariosInicio.js</file>
-            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Controller/commentInicioController.php</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/css/imagenes.css</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Migrations/saveImage.php</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/perfil.php</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/Conexion/QueryConsults.php</file>
+            <file>file:/C:/xampp/htdocs/daw-proyect/public_html/css/imageOverlay.css</file>
         </group>
     </open-files>
 </project-private>

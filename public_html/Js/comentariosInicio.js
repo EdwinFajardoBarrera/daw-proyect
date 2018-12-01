@@ -1,15 +1,20 @@
 var idImage = 0;
 var maxIdValue = 0;
+var activeImage = 0;
 
 function chargeComments(idComment) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("area-comentarios").innerHTML = this.responseText;
+            document.getElementById("commentsCharged").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", "Controller/commentInicioController.php?id=" + idComment + "&p=" + Math.random(), true);
     xhttp.send();
+}
+
+function getFocus() {          
+  document.getElementById("commentTxtBox").focus();
 }
 
 function getIdImage() {
@@ -33,20 +38,20 @@ function setIdImage(newValue) {
 function agregarComentario(usuario, imageID) {
 
     /*Iniciamos conexion con el servidor*/
-    var nuevoComentario = document.getElementById('commentBox').value;
+    var nuevoComentario = document.getElementById('commentTxtBox').value;
     if (nuevoComentario != "") {
         //--------------------------------------------------------------------------------------------------------
         if (isSessionInit(usuario)) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('area-comentarios').innerHTML = this.responseText;
+                    document.getElementById('commentsCharged').innerHTML = this.responseText;
                 }
             };
             xhttp.open("POST", "Controller/commentInicioController.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send('user=' + usuario + '&' + 'imageID=' + imageID + '&' + 'comment=' + nuevoComentario);
-            document.getElementById('commentBox').value = "";
+            window.alert('El comentario se cargó exitosamente!');
         }
         //--------------------------------------------------------------------------------------------------------
     } else {
@@ -66,4 +71,30 @@ function isSessionInit(usuario) {
     } else {
         return true;
     }
+}
+
+function obtenerElemento(elemento) {
+    var cadena = '<img src="' + elemento + '" class="img-fluid rounded">';
+    document.getElementById('rolloGaleria').innerHTML = cadena;
+}
+
+function comentar(e, usuario, idImagen) {
+    if (e.keyCode === 13 && !e.shiftKey) {
+        agregarComentario(usuario, idImagen);
+        document.getElementById('commentTxtBox').value = "";
+    }
+}
+
+function clearTxtBox(e, element){
+     if (e.keyCode === 13 && !e.shiftKey) {
+         element.value = '';
+     }
+}
+
+function setActiveImage(idImage){
+    activeImage= idImage;
+}
+
+function getActiveImage(){
+    return activeImage;
 }

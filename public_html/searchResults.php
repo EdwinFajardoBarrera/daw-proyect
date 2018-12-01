@@ -1,65 +1,147 @@
+<?php
+session_start();
+include 'header.php';
+require './Conexion/QueryConsults.php';
+
+if (($_SERVER["REQUEST_METHOD"] == "GET" && $_GET['buscar'] != "")) {
+    $ctrlConexion = new QueryConsults();
+    $cadenaGenerada = $ctrlConexion->getImagesBySearch($_GET['buscar']);
+} else {
+    $cadenaGenerada[0] = '';
+}
+?>
 <!DOCTYPE html>
 <html>
-<?php 
-    require './Conexion/QueryConsults.php';
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <title>Busqueda</title>
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+        <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+        <link rel="stylesheet" href="assets/tether/tether.min.css">
+        <link rel="stylesheet" href="assets/dropdown/css/style.css">
+        <link rel="stylesheet" href="assets/theme/css/style.css">
+        <link rel="stylesheet" href="assets/gallery/style.css">
+        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
-    $buscar = isset($_GET['buscar']) ?$_GET['buscar'] :"";
-    $mostarImagenes = false;
-    
-    if($buscar != null) {
-        $ctrlConexion = new QueryConsults();
-        $conexion = $ctrlConexion->startConexion();
-        $consulta = "SELECT * FROM images";
-        $resultado = $conexion->query($consulta);
-        $conexion->close();
-        
-        $numImagen = 0;
-        while($columna = $resultado->fetch_assoc()) {   
-            similar_text($buscar, $columna["imageName"], $porcentaje);
-            
-            if($porcentaje >= 70) {  
-                $mostarImagenes = true;
-                
-                $resultados[$numImagen] = '<img src="DB/'. $columna["imageType"] . '/' . $columna["imageName"] . '' . $columna["imageExtension"] .'" '
-                        . 'class="acomodar" width="100%" height="400"> ' ;
-                $numImagen++;
-            }
-            
-        }
-        
-    }
+        <!--Mis hojas de estilo-->
+        <link rel="stylesheet" href="css/imagenes.css">
+        <link rel="stylesheet" href="css/imageOverlay.css">
 
-?>
-<head>
-    <title>Resultados de búsqueda</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="carouselIndex.js"></script>
-    <script src="scripts.js"></script>
-    <link rel="stylesheet" type="text/css" href="estilosInicio.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
-</head>
+    </head>
 
-<body>
-    <main>
-        <!-- HEADER -->
-        <iframe src="header.php" frameborder="0" width="100%" height="90"></iframe>
+    <body style="background-color: #465362">
+        <section class="mbr-section content5 cid-racjG1Jao3 mbr-parallax-background" id="content5-k">
+            <div class="container">
+                <div class="media-container-row">
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">Dibujos&nbsp;</h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-white pb-3 mbr-fonts-style display-5">
+                            Colección aleatoria de los trabajos de nuestros artistas
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Imágenes -->  
-        <?php
-            if ($mostarImagenes) {
-                for($cont = 0; $cont < $numImagen; $cont++) {
-                   echo $resultados[$cont];
-                }
+        <!--Galeria-->
+        <div class="page-header">
+            <?php
+            if ($cadenaGenerada > 0 && $cadenaGenerada[0] === "") {
+                echo '<h1 style="text-align: center; color: #ffffff">Realiza una busqueda en el cuadro de arriba</h1>';
+                $seBusco = false;
             } else {
-                echo "<h1> No se encontraron imágenes :( </h1>";
+                echo '<h1 style="text-align: center; color: #ffffff">Resultados</h1>';
+                $seBusco = true;
             }
-        ?>
-     
-        <!-- FOOTER -->
-        <iframe src="footer.html" frameborder="0" width="100%" height="60"></iframe>
+            ?>
+        </div>
+        <div class="container">
+            <div class="card-columns" id="galeria">
+                <?php
+                if ($cadenaGenerada > 0 && $seBusco) {
+                    $cuenta = count($cadenaGenerada);
+                    for ($cont = 0; $cont < $cuenta; $cont++) {
+                        echo $cadenaGenerada[$cont];
+                    }
+                }
+                ?>
+            </div>
+        </div>
 
-    </main>
-</body>
+        <?php
+        if ($cadenaGenerada[0]=="" && $seBusco) {
+            echo '<h1 style="text-align: center; color: #ffffff">No se encontraron resultados</h1>';
+        }
+        ?>
+        <!--Visualizador de fotos-->
+        <div class="container-fluid">
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="row">
+                    <div class="col-sm-8 align-self-center">
+                        <div class="modal-dialog modal-lg modal-dialog-centered card-img-top" id="rolloGaleria" role="document">
+                            <img id="overImg" src="https://images5.alphacoders.com/376/thumb-1920-376912.jpg" class="img-fluid rounded">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 align-self-center" id="commentsElementBox">
+                        <div id="elementInCommentBox" class="col-sm-12">
+                            <img id="profilePic" src="icons/perfil.png" onmouseover="this.style.cursor = 'pointer'">
+                            Nombre de usuario
+                        </div>
+                        <div id="elementLikeComment" class="row">
+                            <div id="like" class="col-sm-6">
+                                <a href="#">Me gusta</a>
+                            </div>
+                            <div id="commment" class="col-sm-6" onclick="getFocus();">
+                                <a>Comentar</a>
+                            </div>
+                        </div>
+                        <div id="commentsColumn" class="col-sm-12" >
+                            <div id="commentsCharged" class="col-sm-12">
+                                No hay comentarios que mostrar
+                            </div>
+                        </div>
+                        <div id="commentTxtArea" class="col-sm-12">
+                            <img id="profilePicCom" style="width: 50px; height: 50px; border-radius: 100%; " src="icons/perfil.png">
+                            <textarea id="commentTxtBox" cols="2" placeholder="Añadir comentario público" onkeypress="comentar(event, '<?= $_SESSION['Username'] ?>', getActiveImage()); chargeComments(getActiveImage()); clearTxtBox(event, this);"></textarea>
+                            <button class="btn btn-black-outline" style="width: 50px; height: 50px; white-space: nowrap;">Comentar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        include 'footer.html';
+        ?>
+
+        <!--Mis scripts-->
+        <script src="Js/imageOverlay.js"></script>
+        <script src="Js/comentariosInicio.js"></script>
+
+        <script src="assets/web/assets/jquery/jquery.min.js"></script>
+        <script src="assets/popper/popper.min.js"></script>
+        <script src="assets/tether/tether.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
+        <script src="assets/parallax/jarallax.min.js"></script>
+        <script src="assets/smoothscroll/smooth-scroll.js"></script>
+        <script src="assets/masonry/masonry.pkgd.min.js"></script>
+        <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/dropdown/js/script.min.js"></script>
+        <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+        <script src="assets/theme/js/script.js"></script>
+        <script src="assets/gallery/player.min.js"></script>
+        <script src="assets/gallery/script.js"></script>
+
+
+    </body>
 
 </html>

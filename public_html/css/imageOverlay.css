@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/11/2018, 01:01:33 AM
+    Author     : Kirbey
+*/
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 2;
+}
+
+#overlay:focus{
+    visibility: visible;
+    
+}
+
+#iconClose {
+    opacity: 0.15;
+}
+
+#imageViewer {
+    position: relative;
+    padding: 0px;
+}
+
+#imageViewer .viewing {
+    width: 70%;
+    display: block;
+    padding-top: 7%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imageViewer .icons{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#imageViewer .icons:hover{
+    cursor: pointer;
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2)
+}
+
+/*------------------ElementosDeGaleria------------------*/
+#galeria{
+    padding: 0px;
+}
+
+.elementInGallery{
+    transition-property: opacity;
+    transition-duration: 0.1s;
+    opacity: 100%;
+}
+
+.elementInGallery:hover {
+    cursor: pointer;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+    opacity: 150%;
+}
+.imgOfGalery{
+    transition-property: filter;
+    transition-duration: 0.2s;
+    filter:brightness(1);
+}
+
+.imgOfGalery:hover{
+    cursor: pointer;
+    transition-property: filter;
+    transition-duration: 0.2s;
+    filter:brightness(0.5);
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+td {
+    width: 100%;
+}
