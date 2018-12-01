@@ -38,7 +38,6 @@
 
                     </ol>
                     <div class="carousel-inner" role="listbox">
-
                         <div class="carousel-item slider-fullscreen-image active" data-bg-video-slide="false" style="background-image: url(assets/images/mbr-1271x1920.jpg);">
                             <div class="container container-slide">
                                 <div class="image_wrapper">

@@ -195,7 +195,6 @@ class QueryConsults {
         $consulta = "SELECT PR.`name`, I.`imageName`, I.`imageExtension`, I.`imageType` FROM images I, profile PR, posts PO
             WHERE PR.`name` = '" . $sessionUser . "' AND PR.id = PO.id_profile AND I.id = PO.id_image;";
         $resultado = mysqli_query($conexion, $consulta) or die("Corregir sintaxis de la consulta");
-
         $numImagen = 0;
         while ($columna = $resultado->fetch_assoc()) {
 
